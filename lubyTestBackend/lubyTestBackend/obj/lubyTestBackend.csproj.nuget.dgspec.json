@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\backend\\lubyTestBackend\\lubyTestBackend\\lubyTestBackend.csproj": {}
+    "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\lubyTestBackend\\lubyTestBackend\\lubyTestBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\backend\\lubyTestBackend\\lubyTestBackend\\lubyTestBackend.csproj": {
+    "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\lubyTestBackend\\lubyTestBackend\\lubyTestBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\backend\\lubyTestBackend\\lubyTestBackend\\lubyTestBackend.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\lubyTestBackend\\lubyTestBackend\\lubyTestBackend.csproj",
         "projectName": "lubyTestBackend",
-        "projectPath": "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\backend\\lubyTestBackend\\lubyTestBackend\\lubyTestBackend.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\lubyTestBackend\\lubyTestBackend\\lubyTestBackend.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\backend\\lubyTestBackend\\lubyTestBackend\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Projetos\\testedotnet3\\lubyTestBackend\\lubyTestBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

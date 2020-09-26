@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace lubyTestBackend.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     [ApiController]
     public class DeveloperController : ControllerBase
     {
@@ -21,7 +22,7 @@ namespace lubyTestBackend.Controllers
             _developerRepository = developerRepository;
         }
 
-        [HttpGet]
+        [HttpGet("api/[controller]")]
         public IActionResult GetAll()
         {
             try
@@ -35,7 +36,7 @@ namespace lubyTestBackend.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("api/[controller]/insert")]
         public IActionResult Insert([FromBody]DeveloperDomain developer)
         {
             try
@@ -49,12 +50,14 @@ namespace lubyTestBackend.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Delete([FromBody] int id)
+        [HttpPost("api/[controller]/delete/{id}")]
+        public IActionResult Delete(int id)
         {
             try
             {
                 var data = _developerRepository.Delete(id);
+                if (data == 0)
+                    return NotFound();
                 return Ok();
             }
             catch (Exception ex)
@@ -64,12 +67,15 @@ namespace lubyTestBackend.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPut("api/[controller]")]
         public IActionResult Update([FromBody] DeveloperDomain developer)
         {
             try
             {
                 var data = _developerRepository.Update(developer);
+                if (data == 0)
+                    return NotFound();
+
                 return Ok();
             }
             catch (Exception ex)

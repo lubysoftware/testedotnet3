@@ -24,9 +24,9 @@ namespace lubyTestBackend.Repository
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var query = $"delete * from tbl_developer where id = {id}";
+            var query = $"delete from tbl_developer where id = {id}";
 
-            var result = connection.Execute(query);
+            var result =  connection.Execute(query);
 
             return result;
         }
@@ -44,7 +44,7 @@ namespace lubyTestBackend.Repository
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var query = $"insert into tbl_developer (full_name, email) values {developer.FullName}, {developer.Email}";
+            var query = $"insert into tbl_developer (full_name, email) values ('{developer.FullName}', '{developer.Email}')";
 
             var result = connection.Execute(query);
 
@@ -55,7 +55,7 @@ namespace lubyTestBackend.Repository
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var query = $"update tbl_developer set full_name = {developer.FullName}, email = {developer.Email} where id = {developer.Id}";
+            var query = $"update tbl_developer set full_name = '{developer.FullName}', email = '{developer.Email}' where id = {developer.Id}";
 
             var result = connection.Execute(query);
 
