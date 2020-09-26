@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using lubyTestBackend.Repository;
+using lubyTestBackend.Repository.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,7 @@ namespace lubyTestBackend
 
             services.AddSingleton<IDeveloperRepository, DeveloperRepository>();
             services.AddSingleton<IProjectRepository, ProjectRepository>();
+            services.AddSingleton<IWorkingHoursRepository, WorkingHoursRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
