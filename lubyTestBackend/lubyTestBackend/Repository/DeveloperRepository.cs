@@ -35,9 +35,17 @@ namespace lubyTestBackend.Repository
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var developers = connection.Query<DeveloperDomain>("select * from tbl_developer");
+            var developers = connection.Query<DeveloperDomain>("select id, full_name as fullName, email from tbl_developer");
 
             return developers;
+        }
+
+        public DeveloperDomain GetById(int id)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            var developer = connection.Query<DeveloperDomain>($"select id, full_name as fullName, email from tbl_developer where id = {id}");
+
+            return developer.FirstOrDefault();
         }
 
         public int Insert(DeveloperDomain developer)

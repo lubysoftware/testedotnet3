@@ -29,6 +29,7 @@ namespace lubyTestBackend
             services.AddMvcCore();
 
             services.AddSingleton<IDeveloperRepository, DeveloperRepository>();
+            services.AddSingleton<IProjectRepository, ProjectRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

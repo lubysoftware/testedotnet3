@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using lubyTestBackend.Domain;
 using lubyTestBackend.Repository;
@@ -12,13 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace lubyTestBackend.Controllers
 {
     [ApiController]
-    public class DeveloperController : ControllerBase
+    public class ProjectController : ControllerBase
     {
-        private readonly IDeveloperRepository _developerRepository;
+        private readonly IProjectRepository _projectRepository;
 
-        public DeveloperController(IDeveloperRepository developerRepository)
+        public ProjectController(IProjectRepository projectRepository)
         {
-            _developerRepository = developerRepository;
+            _projectRepository = projectRepository;
         }
 
         [HttpGet("api/[controller]")]
@@ -26,9 +24,9 @@ namespace lubyTestBackend.Controllers
         {
             try
             {
-                var data = _developerRepository.GetAll();
+                var data = _projectRepository.GetAll();
                 return Ok(data);
-            } 
+            }
             catch (Exception ex)
             {
                 return new StatusCodeResult(500);
@@ -40,7 +38,7 @@ namespace lubyTestBackend.Controllers
         {
             try
             {
-                var data = _developerRepository.GetById(id);
+                var data = _projectRepository.GetById(id);
                 if (data == null)
                     return NotFound();
                 return Ok(data);
@@ -52,11 +50,11 @@ namespace lubyTestBackend.Controllers
         }
 
         [HttpPost("api/[controller]/insert")]
-        public IActionResult Insert([FromBody]DeveloperDomain developer)
+        public IActionResult Insert([FromBody] ProjectDomain project)
         {
             try
             {
-                var data = _developerRepository.Insert(developer);
+                var data = _projectRepository.Insert(project);
                 return Ok();
             }
             catch (Exception ex)
@@ -70,7 +68,7 @@ namespace lubyTestBackend.Controllers
         {
             try
             {
-                var data = _developerRepository.Delete(id);
+                var data = _projectRepository.Delete(id);
                 if (data == 0)
                     return NotFound();
                 return Ok();
@@ -83,11 +81,11 @@ namespace lubyTestBackend.Controllers
 
 
         [HttpPut("api/[controller]")]
-        public IActionResult Update([FromBody] DeveloperDomain developer)
+        public IActionResult Update([FromBody] ProjectDomain project)
         {
             try
             {
-                var data = _developerRepository.Update(developer);
+                var data = _projectRepository.Update(project);
                 if (data == 0)
                     return NotFound();
 

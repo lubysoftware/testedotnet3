@@ -10,7 +10,9 @@ namespace lubyTestBackend.Repository
     {
         public int Insert(DeveloperDomain developer);
         public IEnumerable<DeveloperDomain> GetAll();
+        public DeveloperDomain GetById(int id);
         public int Update(DeveloperDomain developer);
         public int Delete(int id);
+        
     }
 }
