@@ -32,6 +32,12 @@ namespace lubyTestBackend
             services.AddSingleton<IDeveloperRepository, DeveloperRepository>();
             services.AddSingleton<IProjectRepository, ProjectRepository>();
             services.AddSingleton<IWorkingHoursRepository, WorkingHoursRepository>();
+
+            //services.AddCors( options =>
+            //{
+            //    options.AddPolicy("AllowSpecificOrigin",
+            //        builder => builder.WithOrigins("http://localhost:4200"));
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
