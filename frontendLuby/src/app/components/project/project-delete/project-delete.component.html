@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>Delete Project</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Name" 
+                [value]="project.projectName" name="name" disabled>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Description" 
+                [value]="project.projectDescription" name="description" disabled>
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="deleteProject()" color="warn">
+        Excluir
+    </button>
+    
+    <button mat-raised-button (click)="cancel()" color="secondary">
+        Cancelar
+    </button>
+</mat-card>

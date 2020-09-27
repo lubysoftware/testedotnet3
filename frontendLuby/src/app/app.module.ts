@@ -38,6 +38,9 @@ import { ProductUpdateComponent } from './components/product/product-update/prod
 import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 import { ProjectCrudComponent } from './views/project-crud/project-crud.component';
 import { ProjectCreateComponent } from './components/project/project-create/project-create.component';
+import { ProjectReadComponent } from './components/project/project-read/project-read.component';
+import { ProjectUpdateComponent } from './components/project/project-update/project-update.component';
+import { ProjectDeleteComponent } from './components/project/project-delete/project-delete.component';
 
 registerLocaleData(localePt);
 
@@ -58,6 +61,9 @@ registerLocaleData(localePt);
     ProductDeleteComponent,
     ProjectCrudComponent,
     ProjectCreateComponent,
+    ProjectReadComponent,
+    ProjectUpdateComponent,
+    ProjectDeleteComponent,
   ],
   imports: [
     BrowserModule,

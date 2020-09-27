@@ -56,7 +56,7 @@ export class ProjectService {
       
       delete(id: string): Observable<Project> {
         const url = `${this.baseUrl}/delete/${id}`;
-        return this.http.delete<Project>(url).pipe(
+        return this.http.post<Project>(url, null).pipe(
           map(obj => obj),
           catchError(e => this.errorHandler(e))
         );
