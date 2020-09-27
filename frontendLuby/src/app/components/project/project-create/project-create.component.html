@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>New Project</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Project Name" 
+                [(ngModel)]="project.projectName" name="projectName">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Description" 
+                [(ngModel)]="project.projectDescription" name="projectDescription">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="createProject()" color="primary">
+        Salvar
+    </button>
+    
+    <button mat-raised-button (click)="cancel()" color="secondary">
+        Cancelar
+    </button>
+</mat-card>
