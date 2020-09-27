@@ -16,31 +16,30 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './views/home/home.component';
-import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { RedDirective } from './directives/red.directive';
 import { ForDirective } from './directives/for.directive';
-import { ProductCreateComponent } from './components/product/product-create/product-create.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ProductReadComponent } from './components/product/product-read/product-read.component';
-import { ProductRead2Component } from './components/product/product-read2/product-read2.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
-import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 import { ProjectCrudComponent } from './views/project-crud/project-crud.component';
 import { ProjectCreateComponent } from './components/project/project-create/project-create.component';
 import { ProjectReadComponent } from './components/project/project-read/project-read.component';
 import { ProjectUpdateComponent } from './components/project/project-update/project-update.component';
 import { ProjectDeleteComponent } from './components/project/project-delete/project-delete.component';
+import { DeveloperCrudComponent } from './views/developer-crud/developer-crud.component';
+import { DeveloperCreateComponent } from './components/developer/developer-create/developer-create.component';
+import { DeveloperReadComponent } from './components/developer/developer-read/developer-read.component';
+import { DeveloperUpdateComponent } from './components/developer/developer-update/developer-update.component';
+import { DeveloperDeleteComponent } from './components/developer/developer-delete/developer-delete.component';
 
 registerLocaleData(localePt);
 
@@ -51,19 +50,18 @@ registerLocaleData(localePt);
     FooterComponent,
     NavComponent,
     HomeComponent,
-    ProductCrudComponent,
     RedDirective,
-    ForDirective,
-    ProductCreateComponent,
-    ProductReadComponent,
-    ProductRead2Component,
-    ProductUpdateComponent,
-    ProductDeleteComponent,
+    ForDirective,    
     ProjectCrudComponent,
     ProjectCreateComponent,
     ProjectReadComponent,
     ProjectUpdateComponent,
     ProjectDeleteComponent,
+    DeveloperCrudComponent,
+    DeveloperCreateComponent,
+    DeveloperReadComponent,
+    DeveloperUpdateComponent,
+    DeveloperDeleteComponent,
   ],
   imports: [
     BrowserModule,

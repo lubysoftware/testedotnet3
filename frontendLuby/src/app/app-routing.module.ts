@@ -1,35 +1,19 @@
+import { DeveloperDeleteComponent } from './components/developer/developer-delete/developer-delete.component';
+import { DeveloperUpdateComponent } from './components/developer/developer-update/developer-update.component';
+import { DeveloperCreateComponent } from './components/developer/developer-create/developer-create.component';
+import { DeveloperCrudComponent } from './views/developer-crud/developer-crud.component';
 import { ProjectDeleteComponent } from './components/project/project-delete/project-delete.component';
 import { ProjectUpdateComponent } from './components/project/project-update/project-update.component';
-import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
-import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './views/home/home.component';
-import { ProductCrudComponent } from './views/product-crud/product-crud.component';
-import { ProductCreateComponent } from './components/product/product-create/product-create.component';
 import { ProjectCrudComponent } from './views/project-crud/project-crud.component';
 import { ProjectCreateComponent } from './components/project/project-create/project-create.component';
 
 const routes: Routes = [{
   path: "",
   component: HomeComponent
-},
-{
-  path: "products",
-  component: ProductCrudComponent
-},
-{
-  path: "products/create",
-  component: ProductCreateComponent
-},
-{
-  path: "products/update/:id",
-  component: ProductUpdateComponent
-},
-{
-  path: "products/delete/:id",
-  component: ProductDeleteComponent
 },
 {
   path: "projects",
@@ -46,6 +30,22 @@ const routes: Routes = [{
 {
   path: "projects/delete/:id",
   component: ProjectDeleteComponent
+},
+{
+  path: "developers",
+  component: DeveloperCrudComponent
+},
+{
+  path: "developers/create",
+  component: DeveloperCreateComponent
+},
+{
+  path: "developers/update/:id",
+  component: DeveloperUpdateComponent
+},
+{
+  path: "developers/delete/:id",
+  component: DeveloperDeleteComponent
 }];
 
 @NgModule({

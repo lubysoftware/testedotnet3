@@ -1,4 +1,3 @@
-import { ProductService } from './../../product/product.service';
 import { ProjectService } from './../project.service';
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../project.model';
@@ -23,7 +22,7 @@ export class ProjectCreateComponent implements OnInit {
 
   createProject(): void {
     this.projectService.create(this.project).subscribe(() => {
-      this.projectService.showMessage("Produto criado!");
+      this.projectService.showMessage("Project successfully created.");
       this.router.navigate(["/projects"]);
     });
   }

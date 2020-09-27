@@ -1,6 +1,9 @@
 import { ProjectService } from './../project.service';
-import { Component, OnInit } from '@angular/core';
 import { Project } from '../project.model'; 
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-project-read',
@@ -9,14 +12,18 @@ import { Project } from '../project.model';
 })
 export class ProjectReadComponent implements OnInit {
 
-  projects: Project[];
+  projects: MatTableDataSource<Project>;
   displayedColumns = ['id','projectName', 'projectDescription', 'action'];
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
     this.projectService.read().subscribe(data =>{
-      this.projects = data;
+      this.projects = new MatTableDataSource(data);
+      this.projects.sort = this.sort;
+      this.projects.paginator = this.paginator;
     });
   }
 
