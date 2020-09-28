@@ -10,9 +10,7 @@ namespace lubyTestBackend.Repository.Interfaces
     public interface IWorkingHoursRepository
     {
         public int Insert(WorkingHoursDomain workingHours);
-        public IEnumerable<WorkingHoursDomain> GetAll();
-        public WorkingHoursDomain GetById(int id);
-        public int Update(WorkingHoursDomain workingHours);
+        public IEnumerable<WorkingHoursResponse> GetAll();
         public IEnumerable<WeekRankModel> GetRank();
     }
 }

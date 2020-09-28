@@ -6,6 +6,7 @@ using lubyTestBackend.Domain;
 using lubyTestBackend.Repository.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.IIS;
 
 namespace lubyTestBackend.Controllers
 {
@@ -25,22 +26,6 @@ namespace lubyTestBackend.Controllers
             try
             {
                 var data = _workingHoursRepository.GetAll();
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return new StatusCodeResult(500);
-            }
-        }
-
-        [HttpGet("api/[controller]/{id}")]
-        public IActionResult GetById(int id)
-        {
-            try
-            {
-                var data = _workingHoursRepository.GetById(id);
-                if (data == null)
-                    return NotFound();
                 return Ok(data);
             }
             catch (Exception ex)
@@ -71,23 +56,6 @@ namespace lubyTestBackend.Controllers
             try
             {
                 var data = _workingHoursRepository.Insert(workingHours);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return new StatusCodeResult(500);
-            }
-        }
-
-        [HttpPut("api/[controller]")]
-        public IActionResult Update([FromBody] WorkingHoursDomain workingHours)
-        {
-            try
-            {
-                var data = _workingHoursRepository.Update(workingHours);
-                if (data == 0)
-                    return NotFound();
-
                 return Ok();
             }
             catch (Exception ex)

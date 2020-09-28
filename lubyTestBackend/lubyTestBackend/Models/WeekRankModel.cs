@@ -8,6 +8,6 @@ namespace lubyTestBackend.Models
     public class WeekRankModel
     {
         public int workedHours { get; set; }
-        public string fullName { get; set; }
+        public string devName { get; set; }
     }
 }

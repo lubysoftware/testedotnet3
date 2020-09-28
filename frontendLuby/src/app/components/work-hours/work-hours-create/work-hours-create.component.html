@@ -1,0 +1,41 @@
+<mat-card>
+    <mat-card-title>Add Work Hours</mat-card-title>
+    <form>
+
+        <mat-form-field class="dateTime">
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Initial Date" [(ngModel)]="initialDate"
+                name="initialDate" [min]="minDate" [max]="maxDate" [disabled]="disabled" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+                [color]="color" [enableMeridian]="enableMeridian">
+            </ngx-mat-datetime-picker>
+        </mat-form-field>
+
+        <mat-form-field class="dateTime">
+            <input matInput [ngxMatDatetimePicker]="picker1" placeholder="Final Date" [(ngModel)]="finalDate"
+                name="finalDate" [min]="minDate" [max]="maxDate" [disabled]="disabled" required>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker1 [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+                [color]="color" [enableMeridian]="enableMeridian">
+            </ngx-mat-datetime-picker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="select">
+            <mat-label>Developers</mat-label>
+            <mat-select [(ngModel)]="workHours.idDeveloper" name="developer" required>
+                <mat-option *ngFor="let developer of developers" [value]="developer.id">
+                    {{developer.fullName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="createWorkHour()" color="primary">
+        Add
+    </button>
+
+    <button mat-raised-button (click)="cancel()" color="secondary">
+        Cancel
+    </button>
+</mat-card>

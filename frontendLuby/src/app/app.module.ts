@@ -21,7 +21,7 @@ import { ForDirective } from './directives/for.directive';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
@@ -29,7 +29,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import localePt from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, DatePipe } from '@angular/common';
 import { ProjectCrudComponent } from './views/project-crud/project-crud.component';
 import { ProjectCreateComponent } from './components/project/project-create/project-create.component';
 import { ProjectReadComponent } from './components/project/project-read/project-read.component';
@@ -40,6 +40,13 @@ import { DeveloperCreateComponent } from './components/developer/developer-creat
 import { DeveloperReadComponent } from './components/developer/developer-read/developer-read.component';
 import { DeveloperUpdateComponent } from './components/developer/developer-update/developer-update.component';
 import { DeveloperDeleteComponent } from './components/developer/developer-delete/developer-delete.component';
+import { WorkHoursCrudComponent } from './views/work-hours-crud/work-hours-crud.component';
+import { WorkHoursCreateComponent } from './components/work-hours/work-hours-create/work-hours-create.component';
+import { MatSelectModule } from '@angular/material/select';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { WorkHoursReadComponent } from './components/work-hours/work-hours-read/work-hours-read.component';
+import { WorkHoursRankComponent } from './components/work-hours/work-hours-rank/work-hours-rank.component';
 
 registerLocaleData(localePt);
 
@@ -62,6 +69,10 @@ registerLocaleData(localePt);
     DeveloperReadComponent,
     DeveloperUpdateComponent,
     DeveloperDeleteComponent,
+    WorkHoursCrudComponent,
+    WorkHoursCreateComponent,
+    WorkHoursReadComponent,
+    WorkHoursRankComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,11 +90,17 @@ registerLocaleData(localePt);
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+    ReactiveFormsModule    
   ],
   providers: [{
     provide: LOCALE_ID,
-    useValue: 'pt-BR'
+    useValue: 'pt-BR',
   }],
   bootstrap: [AppComponent]
 })

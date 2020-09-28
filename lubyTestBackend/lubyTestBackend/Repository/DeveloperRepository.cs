@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using lubyTestBackend.Domain;
+using lubyTestBackend.Repository.Interfaces;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,8 @@ namespace lubyTestBackend.Repository
 
         public int Delete(int id)
         {
+            this.deleteWorkHours(id);
+
             using var connection = new SqlConnection(_connectionString);
 
             var query = $"delete from tbl_developer where id = {id}";
@@ -68,6 +71,17 @@ namespace lubyTestBackend.Repository
             var result = connection.Execute(query);
 
             return result;
+        }
+
+        private void deleteWorkHours(int developerId)
+        {
+            using var connection = new SqlConnection(_connectionString);
+
+            var query = $"delete from tbl_working_hours where id_developer = {developerId}";
+
+            connection.Execute(query);
+
+            connection.Close();
         }
     }
 }

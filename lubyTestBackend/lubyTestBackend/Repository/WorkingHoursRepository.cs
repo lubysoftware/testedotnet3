@@ -20,30 +20,25 @@ namespace lubyTestBackend.Repository
             _connectionString = configuration.GetConnectionString("lubyServer");
         }
 
-        public IEnumerable<WorkingHoursDomain> GetAll()
+        public IEnumerable<WorkingHoursResponse> GetAll()
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var workHours = connection.Query<WorkingHoursDomain>("select id, date_init as dateInit, " +
-                                                                 "date_end as dateEnd, id_developer as idDeveloper " +
-                                                                 "from tbl_working_hours");
-
-            return workHours;
-        }
-
-        public WorkingHoursDomain GetById(int id)
-        {
-            using var connection = new SqlConnection(_connectionString);
-            var workHours = connection.QueryFirst<WorkingHoursDomain>("select id, date_init as dateInit, " +
-                                                                      "date_end as dateEnd, id_developer as idDeveloper " +
-                                                                      "from tbl_working_hours " +
-                                                                      $"where id = {id}");
+            var workHours = connection.Query<WorkingHoursResponse>("SELECT WH.ID, WH.DATE_INIT AS dateInit, " +
+                                                                   "WH.DATE_END AS dateEnd, D.FULL_NAME as devName " +
+                                                                   "FROM TBL_WORKING_HOURS WH " +
+                                                                   "INNER JOIN TBL_DEVELOPER D ON WH.ID_DEVELOPER = D.ID");
 
             return workHours;
         }
 
         public int Insert(WorkingHoursDomain workingHours)
         {
+            bool found = searchForWorkHour(workingHours);
+
+            if (found)
+                throw new Exception("Work hour already registered in data base.");
+
             using var connection = new SqlConnection(_connectionString);
 
             var query = "insert into tbl_working_hours (date_init, date_end, id_developer) " +
@@ -51,19 +46,7 @@ namespace lubyTestBackend.Repository
 
             var result = connection.Execute(query);
 
-            return result;
-        }
-
-        public int Update(WorkingHoursDomain workingHours)
-        {
-            using var connection = new SqlConnection(_connectionString);
-
-            var query = "update tbl_working_hours " +
-                        $"set date_init = '{workingHours.DateInit}', " +
-                        $"date_end = '{workingHours.DateEnd}' " +
-                        $"where id = {workingHours.Id}";
-
-            var result = connection.Execute(query);
+            connection.Close();
 
             return result;
         }
@@ -72,7 +55,7 @@ namespace lubyTestBackend.Repository
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var weekRank = connection.Query<WeekRankModel>("SELECT SUM(DATEPART(HH, WH.DATE_END) - DATEPART(HH, WH.DATE_INIT)) as workedHours, DEV.FULL_NAME as fullName " +
+            var weekRank = connection.Query<WeekRankModel>("SELECT SUM(DATEPART(HH, WH.DATE_END) - DATEPART(HH, WH.DATE_INIT)) as workedHours, DEV.FULL_NAME as devName " +
                                                                 "FROM TBL_WORKING_HOURS WH " +
                                                                 "INNER JOIN TBL_DEVELOPER DEV ON WH.ID_DEVELOPER = DEV.ID " +
                                                                 "WHERE(DATEPART(DAY, DATEDIFF(day, 0, DATE_END) / 7 * 7) / 7 + 1) = (DATEPART(DAY, DATEDIFF(day, 0, GETDATE()) / 7 * 7) / 7 + 1) " +
@@ -83,6 +66,22 @@ namespace lubyTestBackend.Repository
 
             return weekRank;          
 
+        }
+
+        private bool searchForWorkHour(WorkingHoursDomain workingHours)
+        {
+            using var connection = new SqlConnection(_connectionString);
+
+            var workingHoursResult = connection.Query<WorkingHoursDomain>("SELECT * " +
+                                                                    "FROM TBL_WORKING_HOURS " +
+                                                                    $"WHERE DATE_END >= '{workingHours.DateInit}' AND ID_DEVELOPER = {workingHours.IdDeveloper}");
+
+            connection.Close();
+
+            if (workingHoursResult.Any())
+                return true;
+
+            return false;
         }
 
     }

@@ -1,3 +1,5 @@
+import { WorkHoursCreateComponent } from './components/work-hours/work-hours-create/work-hours-create.component';
+import { WorkHoursCrudComponent } from './views/work-hours-crud/work-hours-crud.component';
 import { DeveloperDeleteComponent } from './components/developer/developer-delete/developer-delete.component';
 import { DeveloperUpdateComponent } from './components/developer/developer-update/developer-update.component';
 import { DeveloperCreateComponent } from './components/developer/developer-create/developer-create.component';
@@ -46,6 +48,14 @@ const routes: Routes = [{
 {
   path: "developers/delete/:id",
   component: DeveloperDeleteComponent
+},
+{
+  path: "workhours",
+  component: WorkHoursCrudComponent
+},
+{
+  path: "workhours/create",
+  component: WorkHoursCreateComponent
 }];
 
 @NgModule({
