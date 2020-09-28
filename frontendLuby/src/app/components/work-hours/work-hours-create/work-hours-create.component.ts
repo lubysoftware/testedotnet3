@@ -40,6 +40,8 @@ export class WorkHoursCreateComponent implements OnInit {
     dateInit: '',
     dateEnd: '',
     idDeveloper: null,
+    devName: '',
+    workedHours: null
   }
 
   constructor(
@@ -65,7 +67,6 @@ export class WorkHoursCreateComponent implements OnInit {
     this.workHoursService.create(this.workHours).subscribe(() => {
       this.workHoursService.showMessage("Work hours successfully added.");
     });
-    this.router.navigate(['/workhours']);
   }
 
   cancel(): void {

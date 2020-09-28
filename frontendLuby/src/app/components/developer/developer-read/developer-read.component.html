@@ -30,9 +30,23 @@
             </a>
         </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Empty developer list
+        </mat-footer-cell>
+      </ng-container> 
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>     
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>    
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': developers!=null}">
+      </mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(developers!=null && developers.data.length==0)}">
+      </mat-footer-row> 
     </mat-table>
     <mat-paginator          
       [pageSize]="5"
