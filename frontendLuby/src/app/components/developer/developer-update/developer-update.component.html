@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-title>Edit developer</mat-card-title>
+    <form [formGroup]="developerForm">
+        <mat-form-field>
+            <input matInput placeholder="Name" formControlName="fullName">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="updateDeveloper()" color="primary" [disabled]="!developerForm.valid">
+        Edit
+    </button>
+    
+    <button mat-raised-button (click)="cancel()" color="secondary">
+        Cancel
+    </button>
+</mat-card>
