@@ -1,13 +1,11 @@
 <mat-card>
     <mat-card-title>Delete developer</mat-card-title>
-    <form>
+    <form [formGroup]="developerForm">
         <mat-form-field>
-            <input matInput placeholder="Name" 
-                [value]="developer.fullName" name="name" disabled>
+            <input matInput placeholder="Name" formControlName="fullName" disabled>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Email" 
-                [value]="developer.email" name="email" disabled>
+            <input matInput placeholder="Email" formControlName="email" disabled>
         </mat-form-field>
     </form>
     <button mat-raised-button (click)="deleteDeveloper()" color="warn">

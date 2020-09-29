@@ -1,8 +1,8 @@
 form {
     display: flex;
     flex-direction: row;    
-    /* margin-top: 30px; */
     margin: 30px;
+    align-items: center;
 }
 
 .select {
@@ -15,5 +15,14 @@ form {
 
 button {
     margin-right: 15px;
-    /* margin-top: 10px; */
 }
+
+.label {
+    font-weight: 500;
+}
+
+.error {
+    color: red;
+}
+
+

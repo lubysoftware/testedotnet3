@@ -2,6 +2,7 @@ import { ProjectService } from './../project.service';
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../project.model';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-project-create',
@@ -10,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class ProjectCreateComponent implements OnInit {
 
-  project: Project = {
-    projectName: '',
-    projectDescription: ''
-  }
+  projectForm = new FormGroup({
+    projectName: new FormControl('', Validators.required),
+    projectDescription: new FormControl('', Validators.required)
+  });
 
   constructor(private projectService: ProjectService, private router: Router) { }
 
@@ -21,7 +22,7 @@ export class ProjectCreateComponent implements OnInit {
   }
 
   createProject(): void {
-    this.projectService.create(this.project).subscribe(() => {
+    this.projectService.create(this.projectForm.getRawValue()).subscribe(() => {
       this.projectService.showMessage("Project successfully created.");
       this.router.navigate(["/projects"]);
     });

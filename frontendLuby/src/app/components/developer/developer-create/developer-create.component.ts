@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { DeveloperService } from './../developer.service';
 import { Component, OnInit } from '@angular/core';
-import { Developer } from '../developer.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-developer-create',
@@ -10,10 +10,10 @@ import { Developer } from '../developer.model';
 })
 export class DeveloperCreateComponent implements OnInit {
 
-  developer: Developer = {
-    fullName: '',
-    email: ''
-  }
+  developerForm = new FormGroup({
+    fullName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+  });
 
   constructor(private developerService: DeveloperService, private router: Router) { }
 
@@ -21,7 +21,7 @@ export class DeveloperCreateComponent implements OnInit {
   }
 
   createDeveloper(): void {
-    this.developerService.create(this.developer).subscribe(() => {
+    this.developerService.create(this.developerForm.getRawValue()).subscribe(() => {
       this.developerService.showMessage("Developer successfully added.");
       this.router.navigate(["/developers"]);
     });

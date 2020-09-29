@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProjectService } from './../project.service';
-import { Project } from './../project.model';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-project-delete',
@@ -10,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectDeleteComponent implements OnInit {
 
-  project: Project;
+  projectForm = new FormGroup({
+    id: new FormControl ({value: '', disabled: true}, Validators.nullValidator),
+    projectName: new FormControl({value: '', disabled: true}, Validators.required),
+    projectDescription: new FormControl({value: '', disabled: true}, Validators.required)
+  });
 
   constructor(
     private projectService: ProjectService,
@@ -21,12 +25,12 @@ export class ProjectDeleteComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.projectService.readById(id).subscribe(data => {
-      this.project = data;
+      this.projectForm.patchValue(data);
     })
   }
 
   deleteProject(): void {
-    this.projectService.delete(this.project.id.toString()).subscribe(() => {
+    this.projectService.delete(this.projectForm.get("id").value).subscribe(() => {
       this.projectService.showMessage('Project successfully deleted.');
       this.router.navigate(['/projects']);
     });

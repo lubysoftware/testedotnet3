@@ -1,16 +1,14 @@
 <mat-card>
     <mat-card-title>Edit Project</mat-card-title>
-    <form>
+    <form [formGroup]="projectForm">
         <mat-form-field>
-            <input matInput placeholder="Name" 
-                [(ngModel)]="project.projectName" name="name">
+            <input matInput placeholder="Name" formControlName=projectName>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Description" 
-                [(ngModel)]="project.projectDescription" name="description">
+            <input matInput placeholder="Description" formControlName=projectDescription>
         </mat-form-field>
     </form>
-    <button mat-raised-button (click)="updateProject()" color="primary">
+    <button mat-raised-button (click)="updateProject()" color="primary" [disabled]="!projectForm.valid">
         Edit
     </button>
     

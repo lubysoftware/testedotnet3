@@ -1,4 +1,4 @@
-import { Developer } from './../developer.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DeveloperService } from './../developer.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeveloperDeleteComponent implements OnInit {
 
-  developer: Developer;
+  developerForm = new FormGroup({
+    id: new FormControl({value: '', disabled: true}, Validators.nullValidator),
+    fullName: new FormControl({value: '', disabled: true}, Validators.required),
+    email: new FormControl({value: '', disabled: true}, Validators.required)
+  });
 
   constructor(
     private developerService: DeveloperService,
@@ -21,12 +25,12 @@ export class DeveloperDeleteComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.developerService.readById(id).subscribe(data => {
-      this.developer = data;
+      this.developerForm.patchValue(data);
     });
   }
 
   deleteDeveloper(): void {
-    this.developerService.delete(this.developer.id.toString()).subscribe( () => {
+    this.developerService.delete(this.developerForm.get("id").value).subscribe( () => {
       this.developerService.showMessage("Developer removed successfully.");
       this.router.navigate(['/developers']);
     });

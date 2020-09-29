@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeveloperService } from './../developer.service';
 import { Component, OnInit } from '@angular/core';
-import { Developer } from '../developer.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-developer-update',
@@ -10,7 +10,11 @@ import { Developer } from '../developer.model';
 })
 export class DeveloperUpdateComponent implements OnInit {
 
-  developer: Developer;
+  developerForm = new FormGroup({
+    id: new FormControl('', Validators.nullValidator),
+    fullName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required)
+  });
 
   constructor(
     private developerService: DeveloperService,
@@ -21,12 +25,12 @@ export class DeveloperUpdateComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.developerService.readById(id).subscribe(data => {
-      this.developer = data;
+      this.developerForm.patchValue(data);
     })
   }
 
   updateDeveloper(): void {
-    this.developerService.update(this.developer).subscribe(() =>{
+    this.developerService.update(this.developerForm.getRawValue()).subscribe(() =>{
       this.developerService.showMessage("Developer successfully updated.");
       this.router.navigate(['/developers']);
     });

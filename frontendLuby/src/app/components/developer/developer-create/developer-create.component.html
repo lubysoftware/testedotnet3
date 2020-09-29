@@ -1,16 +1,14 @@
 <mat-card>
     <mat-card-title>Add Developer</mat-card-title>
-    <form>
+    <form [formGroup]="developerForm">
         <mat-form-field>
-            <input matInput placeholder="Full Name" 
-                [(ngModel)]="developer.fullName" name="fullName">
+            <input matInput placeholder="Full Name" formControlName="fullName">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Email" 
-                [(ngModel)]="developer.email" name="email">
+            <input matInput placeholder="Email" formControlName="email">
         </mat-form-field>
     </form>
-    <button mat-raised-button (click)="createDeveloper()" color="primary">
+    <button mat-raised-button (click)="createDeveloper()" color="primary" [disabled]="!developerForm.valid">
         Save
     </button>
     

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Project } from '../project.model';
 import { ProjectService } from '../project.service';
 
 @Component({
@@ -10,7 +10,11 @@ import { ProjectService } from '../project.service';
 })
 export class ProjectUpdateComponent implements OnInit {
 
-  project: Project;
+  projectForm = new FormGroup({
+    id: new FormControl ('', Validators.nullValidator),
+    projectName: new FormControl('', Validators.required),
+    projectDescription: new FormControl('', Validators.required)
+  });
 
   constructor(
     private projectService: ProjectService,
@@ -21,12 +25,12 @@ export class ProjectUpdateComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.projectService.readById(id).subscribe(data => {
-      this.project = data;
+      this.projectForm.patchValue(data);
     });
   }
 
   updateProject(): void {
-    this.projectService.update(this.project).subscribe(() => {
+    this.projectService.update(this.projectForm.getRawValue()).subscribe(() => {
       this.projectService.showMessage("Project successfully updated.");
       this.router.navigate(['/projects']);
     });
