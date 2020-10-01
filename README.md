@@ -3,7 +3,7 @@
 ## Checklist de planejamento
 
 ### Backend
-
+[ ] Criar estrutura inicial da api
 [ ] Criar server para api (express)
 [ ] Adicionar dependências (mysql2, sequelize, mysql, ...)
 [ ] Criar model (Developer)
