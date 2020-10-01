@@ -11,7 +11,7 @@
 [ ] Criar model (Project)
 [x] Criar migration (Developer)
 [ ] Criar migration (Project)
-[ ] Criar CRUD de desenvolvedor (developers)
+[x] Criar CRUD de desenvolvedor (developers)
 [ ] Criar CRUD de projeto (projects)
 [ ] Criar relacionamento de projeto com desenvolvedores (developerProjects)
 [ ] Criar CRUD de lançamento de horas (worked hours) 
