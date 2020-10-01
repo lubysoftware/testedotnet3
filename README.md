@@ -1,4 +1,32 @@
 # Desafio Back-end Luby Software
+
+## Checklist de planejamento
+
+### Backend
+
+[ ] Criar server para api (express)
+[ ] Adicionar dependências (mysql2, sequelize, mysql, ...)
+[ ] Criar model (Developer)
+[ ] Criar model (Project)
+[ ] Criar migration (Developer)
+[ ] Criar migration (Project)
+[ ] Criar CRUD de desenvolvedor (developers)
+[ ] Criar CRUD de projeto (projects)
+[ ] Criar relacionamento de peojeto com desenvolvedores (developerProjects)
+[ ] Criar CRUD de lançamento de horas (worked hours) 
+[ ] Planejar melhor forma de montar ranking
+... 
+
+### Front-end
+
+[ ] Criar estrutura inicial do projeto em react
+[ ] Criar criar rota para desenvolvedores
+[ ] Criar criar rota para projetos
+[ ] Criar criar rota para lançamento de horas trabalhadas
+[ ] Criar criar rota para ranking
+...
+
+-----
 Primeiramente, obrigado pelo seu interesse em trabalhar na Luby. Somos uma fábrica de software com mais de 110 desenvolvedores e 15 anos de mercado. Temos atuação em mais de 5 países e estamos em busca de talentos para integrar o nosso time no desenvolvimento .NET de forma 100% remota.
 
 #### Premissas:
