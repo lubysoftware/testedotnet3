@@ -6,14 +6,14 @@
 [x] Criar estrutura inicial da api
 [x] Criar server para api (express)
 [x] Adicionar dependências (mysql2, sequelize, mysql, ...)
-[ ] Adficionar conexão com o banco de dados
-[ ] Criar model (Developer)
+[x] Adficionar conexão com o banco de dados
+[x] Criar model (Developer)
 [ ] Criar model (Project)
-[ ] Criar migration (Developer)
+[x] Criar migration (Developer)
 [ ] Criar migration (Project)
 [ ] Criar CRUD de desenvolvedor (developers)
 [ ] Criar CRUD de projeto (projects)
-[ ] Criar relacionamento de peojeto com desenvolvedores (developerProjects)
+[ ] Criar relacionamento de projeto com desenvolvedores (developerProjects)
 [ ] Criar CRUD de lançamento de horas (worked hours) 
 [ ] Planejar melhor forma de montar ranking
 ... 
