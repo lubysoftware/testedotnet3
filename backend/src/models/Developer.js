@@ -9,6 +9,9 @@ class Developer extends Model {
             tableName: 'developers',
         })
     }
+    static associate(models) {
+        this.belongsToMany(models.Project, { foreignKey: 'developerId', through: 'developerProjects', name: 'developers' })
+    }
 }
 
 module.exports = Developer;
