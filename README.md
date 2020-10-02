@@ -14,20 +14,27 @@
 [x] Criar CRUD de desenvolvedor (developers)
 [x] Criar CRUD de projeto (projects)
 [x] Criar relacionamento de projeto com desenvolvedores (developerProjects)
+[ ] Corrigir problema com o campo workTimeInMiliseconds na tabela de integração entre projeto e desenvolvedor (o campo não está sendo setado com nenhum comando do sequelize.)
 [ ] Criar CRUD de lançamento de horas (worked hours) 
 [ ] Planejar melhor forma de montar ranking
 ... 
 
 ### Front-end
 
-[ ] Criar estrutura inicial do projeto em react
-[ ] Criar criar rota para desenvolvedores
-[ ] Criar criar rota para projetos
+[x] Criar estrutura inicial do projeto em react
+[x] Criar criar rota para desenvolvedores
+[x] Criar criar rota para projetos
+[ ] Criar menu de navegação
+[x] Listar Desenvolvedores
+[ ] Listar Projetos
+[ ] Criar funcionalidade de adicionar dev
+[ ] Criar funcionalidade de adicionar projeto
 [ ] Criar criar rota para lançamento de horas trabalhadas
 [ ] Criar criar rota para ranking
 ...
 
 -----
+
 Primeiramente, obrigado pelo seu interesse em trabalhar na Luby. Somos uma fábrica de software com mais de 110 desenvolvedores e 15 anos de mercado. Temos atuação em mais de 5 países e estamos em busca de talentos para integrar o nosso time no desenvolvimento .NET de forma 100% remota.
 
 #### Premissas:
