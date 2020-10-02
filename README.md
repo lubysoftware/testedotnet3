@@ -8,12 +8,12 @@
 [x] Adicionar dependências (mysql2, sequelize, mysql, ...)
 [x] Adficionar conexão com o banco de dados
 [x] Criar model (Developer)
-[ ] Criar model (Project)
+[x] Criar model (Project)
 [x] Criar migration (Developer)
-[ ] Criar migration (Project)
+[x] Criar migration (Project)
 [x] Criar CRUD de desenvolvedor (developers)
-[ ] Criar CRUD de projeto (projects)
-[ ] Criar relacionamento de projeto com desenvolvedores (developerProjects)
+[x] Criar CRUD de projeto (projects)
+[x] Criar relacionamento de projeto com desenvolvedores (developerProjects)
 [ ] Criar CRUD de lançamento de horas (worked hours) 
 [ ] Planejar melhor forma de montar ranking
 ... 

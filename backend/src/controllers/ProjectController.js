@@ -1,5 +1,6 @@
 const Project = require('../models/Project');
 const Developer = require('../models/Developer');
+const DeveloperProjects = require('../models/DeveloperProjects');
 
 module.exports = {
     // List All Projects
@@ -13,9 +14,19 @@ module.exports = {
             return res.status(error.code || 400).json({ code: error.code, message: error.message });
         }
     },
-    // Find By Id
-    async find(req, res) {
+    // List By Developer
+    async indexForDeveloper(req, res) {
         try {
+            const { developerId } = req.params;
+
+            const developer = await Developer.findByPk(developerId)
+
+            if (!developer) {
+                return res.status(400).send({ error: 'Developer not found' });
+            }
+            const projects = await developer.getProjects();
+
+            return res.json({ projects })
         } catch (error) {
             console.log(error);
             return res.status(error.code || 400).json({ code: error.code, message: error.message });
@@ -26,37 +37,46 @@ module.exports = {
     async store(req, res) {
         try {
             const { developerId } = req.params;
-            const { name, description } = req.body;
+            const { name, description, workedTimeInMiliseconds } = req.body;
+            const developer = await Developer.findByPk(developerId)
+
+            if (!developer) {
+                return res.status(400).send({ error: 'Developer not found' });
+            }
+
+            const [project, created] = await Project.findOrCreate({
+                defaults: { name, description },
+                where: { name },
+            });
+            project.developerProjects = {
+                workedTimeInMiliseconds, developerId
+            };
+            console.log(project);
+            const devProject = await DeveloperProjects.create(project);
+
+            return res.json({ devProject })
+        } catch (error) {
+            console.log(error);
+            return res.status(error.code || 400).json({ code: error.code, message: error.message });
+        }
+    },
+
+    // Delete Project for user
+    async destroyForDeveloper(req, res) {
+        try {
+            const { developerId } = req.params;
+            const { name } = req.body;
 
             const developer = await Developer.findByPk(developerId)
 
             if (!developer) {
                 return res.status(400).send({ error: 'Developer not found' });
             }
-            const [ project, created ]  = await Project.findOrCreate({
-                defaults: { name, description },
-                where: { name },
-            });
-            await developer.setProjects([project]);
+
+            const project = await Project.findOne({ where: { name } });
+            await developer.removeProject(project);
 
             return res.json({ developer })
-        } catch (error) {
-            console.log(error);
-            return res.status(error.code || 400).json({ code: error.code, message: error.message });
-        }
-    },
-    // Update
-    async update(req, res) {
-        try {
-        } catch (error) {
-            console.log(error);
-            return res.status(error.code || 400).json({ code: error.code, message: error.message });
-        }
-    },
-
-    // Delete
-    async destroy(req, res) {
-        try {
         } catch (error) {
             console.log(error);
             return res.status(error.code || 400).json({ code: error.code, message: error.message });

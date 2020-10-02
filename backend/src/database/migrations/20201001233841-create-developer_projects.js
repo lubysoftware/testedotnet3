@@ -21,6 +21,10 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
+      workedTimeInMiliseconds: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      }
     });
   },
 
