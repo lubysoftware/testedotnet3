@@ -13,7 +13,10 @@ routes.get('/developers/:developerId', DeveloperController.find);
 
 // manipulate projects for developer
 routes.post('/developers/:developerId/projects', ProjectController.store);
+routes.put('/developers/:developerId/projects/:projectId', ProjectController.update);
+
 routes.get('/developers/:developerId/projects', ProjectController.indexForDeveloper);
+routes.get('/developers/:developerId/projects/:projectId', ProjectController.findforDeveloperByProject);
 routes.delete('/developers/:developerId/projects', ProjectController.destroyForDeveloper);
 
 // CRUD projects

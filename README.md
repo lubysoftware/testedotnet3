@@ -3,20 +3,20 @@
 ## Checklist de planejamento
 
 ### Backend
-[x] Criar estrutura inicial da api
-[x] Criar server para api (express)
-[x] Adicionar dependências (mysql2, sequelize, mysql, ...)
-[x] Adficionar conexão com o banco de dados
-[x] Criar model (Developer)
-[x] Criar model (Project)
-[x] Criar migration (Developer)
-[x] Criar migration (Project)
-[x] Criar CRUD de desenvolvedor (developers)
-[x] Criar CRUD de projeto (projects)
-[x] Criar relacionamento de projeto com desenvolvedores (developerProjects)
-[ ] Corrigir problema com o campo workTimeInMiliseconds na tabela de integração entre projeto e desenvolvedor (o campo não está sendo setado com nenhum comando do sequelize.)
-[ ] Criar CRUD de lançamento de horas (worked hours) 
-[ ] Planejar melhor forma de montar ranking
+ [x] - Criar estrutura inicial da api
+ [x] - Criar server para api (express)
+ [x] Adicionar dependências (mysql2, sequelize, mysql, ...)
+ [x] Adficionar conexão com o banco de dados
+ [x] Criar model (Developer)
+ [x] Criar model (Project)
+ [x] Criar migration (Developer)
+ [x] Criar migration (Project)
+ [x] Criar CRUD de desenvolvedor (developers)
+ [x] Criar CRUD de projeto (projects)
+ [x] Criar relacionamento de projeto com desenvolvedores (developerProjects)
+ [x] Corrigir problema com o campo workTimeInMiliseconds na tabela de integração entre projeto e desenvolvedor (o campo não está sendo setado com nenhum comando do sequelize.)
+ [x] Criar CRUD de lançamento de horas (worked hours) 
+ [ ] Criar endpoint para ranking
 ... 
 
 ### Front-end

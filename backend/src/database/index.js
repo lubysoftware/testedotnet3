@@ -3,7 +3,7 @@ const dbConfig = require('../config/database');
 
 const Developer = require('../models/Developer');
 const Project = require('../models/Project');
-const DeveloperProjects = require('../models/DeveloperProjects');
+const DeveloperProjects = require('../models/DeveloperProject');
 
 
 const connection = new Sequelize(dbConfig);

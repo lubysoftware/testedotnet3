@@ -1,9 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 
-class DeveloperProjects extends Model {
+class DeveloperProject extends Model {
     static init(sequelize) {
         super.init({
             workedTimeInMiliseconds: DataTypes.INTEGER,
+            projectId: DataTypes.INTEGER,
+            developerId: DataTypes.INTEGER,
         }, {
             sequelize,
             tableName: 'developerProjects',
@@ -11,4 +13,4 @@ class DeveloperProjects extends Model {
     }
 }
 
-module.exports = DeveloperProjects;
+module.exports = DeveloperProject;

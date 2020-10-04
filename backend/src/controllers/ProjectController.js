@@ -1,6 +1,6 @@
 const Project = require('../models/Project');
 const Developer = require('../models/Developer');
-const DeveloperProjects = require('../models/DeveloperProjects');
+const DeveloperProject = require('../models/DeveloperProject');
 
 module.exports = {
     // List All Projects
@@ -19,14 +19,33 @@ module.exports = {
         try {
             const { developerId } = req.params;
 
-            const developer = await Developer.findByPk(developerId)
+            const developer = await DeveloperProject.findByPk(developerId)
 
             if (!developer) {
                 return res.status(400).send({ error: 'Developer not found' });
             }
+            console.log(developer);
             const projects = await developer.getProjects();
 
             return res.json({ projects })
+        } catch (error) {
+            console.log(error);
+            return res.status(error.code || 400).json({ code: error.code, message: error.message });
+        }
+    },
+
+    // Find Project By Developer
+    async findforDeveloperByProject(req, res) {
+        try {
+            const { developerId } = req.params;
+            const { projectId } = req.params;
+
+            const developerProject = await DeveloperProject.findOne({ where: { developerId, projectId } })
+
+            if (!developerProject) {
+                return res.status(400).send({ error: 'Developer not found' });
+            }
+            return res.json({ developerProject })
         } catch (error) {
             console.log(error);
             return res.status(error.code || 400).json({ code: error.code, message: error.message });
@@ -48,13 +67,37 @@ module.exports = {
                 defaults: { name, description },
                 where: { name },
             });
-            project.developerProjects = {
-                workedTimeInMiliseconds, developerId
-            };
-            console.log(project);
-            const devProject = await DeveloperProjects.create(project);
 
-            return res.json({ devProject })
+            const devProject = await DeveloperProject.create(
+                { developerId: developer.id, workedTimeInMiliseconds, projectId: project.dataValues.id },
+                { fields: ['developerId', 'workedTimeInMiliseconds', 'projectId'] }
+            );
+            return res.json({ project })
+
+        } catch (error) {
+            console.log(error);
+            return res.status(error.code || 400).json({ code: error.code, message: error.message });
+        }
+    },
+
+    // Update project for dev
+    async update(req, res) {
+        try {
+            const { developerId } = req.params;
+            const { projectId } = req.params;
+
+            const { workedTimeInMiliseconds } = req.body;
+
+            const developerProject = await DeveloperProject.findOne({ where: { developerId, projectId } })
+            const workedTimeIncremented = workedTimeInMiliseconds + developerProject.workedTimeInMiliseconds;
+            console.log(workedTimeIncremented);
+            const [code, developerProjectUpdated] = await DeveloperProject.update(
+                { workedTimeInMiliseconds: workedTimeIncremented > 0 ? workedTimeIncremented : 0 },
+                { where: { id: developerProject.id } }
+            );
+            console.log(developerProjectUpdated);
+            return res.json({ message: code ? 'Developer Worked Time updated successfully!' : `Developer Worked Time isn't updated` });
+
         } catch (error) {
             console.log(error);
             return res.status(error.code || 400).json({ code: error.code, message: error.message });
