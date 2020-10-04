@@ -11,6 +11,10 @@ class DeveloperProject extends Model {
             tableName: 'developerProjects',
         })
     }
+    static associate(models) {
+        this.hasOne(models.Developer, { foreignKey: 'id', as: 'Developers' })
+        this.hasOne(models.Project, { foreignKey: 'id', as: 'Projects' })
+    }
 }
 
 module.exports = DeveloperProject;

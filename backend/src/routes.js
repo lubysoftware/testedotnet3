@@ -1,6 +1,7 @@
 const express = require('express');
 const DeveloperController = require('./controllers/DeveloperController');
 const ProjectController = require('./controllers/ProjectController');
+const RankingController = require('./controllers/RankingController');
 
 const routes = express.Router();
 
@@ -19,10 +20,10 @@ routes.get('/developers/:developerId/projects', ProjectController.indexForDevelo
 routes.get('/developers/:developerId/projects/:projectId', ProjectController.findforDeveloperByProject);
 routes.delete('/developers/:developerId/projects', ProjectController.destroyForDeveloper);
 
-// CRUD projects
 routes.get('/projects', ProjectController.index);
-// routes.get('/projects/:projectId', ProjectController.find);
-// routes.delete('/projects/:projectId', ProjectController.destroy);
-// routes.post('/project', ProjectController.store);
+
+// ranking
+routes.get('/ranking', RankingController.index);
+
 
 module.exports = routes;

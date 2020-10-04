@@ -24,10 +24,7 @@ module.exports = {
             if (!developer) {
                 return res.status(400).send({ error: 'Developer not found' });
             }
-            console.log(developer);
-            const projects = await developer.getProjects();
-
-            return res.json({ projects })
+            return res.json({ developer })
         } catch (error) {
             console.log(error);
             return res.status(error.code || 400).json({ code: error.code, message: error.message });
@@ -89,13 +86,15 @@ module.exports = {
             const { workedTimeInMiliseconds } = req.body;
 
             const developerProject = await DeveloperProject.findOne({ where: { developerId, projectId } })
+            if (!developerProject) {
+                return res.status(400).json({ message: 'This Developer is not vinculed with this Project!'});
+
+            }
             const workedTimeIncremented = workedTimeInMiliseconds + developerProject.workedTimeInMiliseconds;
-            console.log(workedTimeIncremented);
-            const [code, developerProjectUpdated] = await DeveloperProject.update(
+            const [code] = await DeveloperProject.update(
                 { workedTimeInMiliseconds: workedTimeIncremented > 0 ? workedTimeIncremented : 0 },
                 { where: { id: developerProject.id } }
             );
-            console.log(developerProjectUpdated);
             return res.json({ message: code ? 'Developer Worked Time updated successfully!' : `Developer Worked Time isn't updated` });
 
         } catch (error) {

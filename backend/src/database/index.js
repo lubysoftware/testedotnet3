@@ -7,11 +7,12 @@ const DeveloperProjects = require('../models/DeveloperProject');
 
 
 const connection = new Sequelize(dbConfig);
+DeveloperProjects.init(connection);
 Developer.init(connection);
 Project.init(connection);
-DeveloperProjects.init(connection);
 
 Developer.associate(connection.models);
 Project.associate(connection.models);
+DeveloperProjects.associate(connection.models);
 
 module.exports = connection;

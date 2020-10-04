@@ -16,7 +16,8 @@
  [x] Criar relacionamento de projeto com desenvolvedores (developerProjects)
  [x] Corrigir problema com o campo workTimeInMiliseconds na tabela de integração entre projeto e desenvolvedor (o campo não está sendo setado com nenhum comando do sequelize.)
  [x] Criar CRUD de lançamento de horas (worked hours) 
- [ ] Criar endpoint para ranking
+ [x] Criar endpoint para ranking
+ [ ] Resolver problema para não precisar executar 'SET GLOBAL sql_mode = '';' a todo momento
 ... 
 
 ### Front-end
