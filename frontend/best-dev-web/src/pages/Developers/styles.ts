@@ -10,4 +10,8 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 `;

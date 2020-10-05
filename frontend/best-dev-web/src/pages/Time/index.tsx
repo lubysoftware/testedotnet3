@@ -1,33 +1,42 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Card from '../../components/Card';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Developer } from '../../interfaces/developer';
 import { developersService, projectsService } from '../../services';
-import { List } from '../../theme/globals';
-import { Container } from './styles';
+import { Container } from '../Developers/styles';
 
 // import { Container } from './styles';
 
 const Time: React.FC = () => {
+    const [workedTime, setWorkedTime] = useState(0);
     const { developerId } = useParams();
-    const [dev, setDev] = useState<Developer>({} as Developer);
+    const history = useHistory();
 
-    const getDeveloper = useCallback(async (id) => {
-        const { data } = await projectsService.getProjects(id);
-        console.log(data);
-        setDev(data);
-    }, []);
-    useEffect(() => {
-        getDeveloper(developerId);
-    }, [developerId]);
+    // TODO: CREATE OR SELECT PROJECT
+    const project = {
+        id: 1,
+        name: 'Project 5',
+        description: 'A wonderful project'
+    }
+
+
+    const handleSubmit = async (event: any) => {
+        event.preventDefault();
+        try {
+            const ret = await developersService.setWorkedHours(developerId, project.id, workedTime);
+            setWorkedTime(0);
+            history.push('/');
+        } catch (error) {
+
+        }
+    };
     return (
         <Container>
-            <h1>{dev?.name}</h1>
-            <List>
-                <Link to={`/lancar-hora/${dev.id}`} style={{ textDecoration: 'none' }}>
-                    <Card key={dev.id} name={` ${dev.name}`} color="white" />
-                </Link>
-            </List>
+            <h1>Lançar horas</h1>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="workedTime">Horas trabalhadas</label>
+                <input name="workedTime" id="workedTime" type='number' value={workedTime} onChange={e => setWorkedTime(Number(e.target.value))} />
+                <button type="submit">Salvar</button>
+            </form>
         </Container>
     );
 }

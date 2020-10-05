@@ -35,11 +35,16 @@ const Ranking: React.FC = () => {
             <h1>Top 5</h1>
             <List>
                 {ranking.map((dev, index) => (
-                    <Link to={`/lancar-hora/${dev.id}`} style={{ textDecoration: 'none' }}>
-                        <Card key={dev.id} name={`${index + 1} ${dev.name}`} color={dev.color} />
+                    <Link key={dev.id} to={`/lancar-hora/${dev.id}`} style={{ textDecoration: 'none' }}>
+                        <Card name={`${index + 1} ${dev.name}`} color={dev.color} />
                     </Link>
                 ))}
             </List>
+            <Link to={`/novo-desenvolvedor`} style={{ textDecoration: 'none' }}>
+                <button>
+                    Novo desenvolvedor
+            </button>
+            </Link>
         </Container>
     );
 }
