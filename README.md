@@ -17,7 +17,6 @@
  [x] Corrigir problema com o campo workTimeInMiliseconds na tabela de integração entre projeto e desenvolvedor (o campo não está sendo setado com nenhum comando do sequelize.)
  [x] Criar CRUD de lançamento de horas (worked hours) 
  [x] Criar endpoint para ranking
- [ ] Resolver problema para não precisar executar 'SET GLOBAL sql_mode = '';' a todo momento
 ... 
 
 ### Front-end
@@ -25,16 +24,19 @@
 [x] Criar estrutura inicial do projeto em react
 [x] Criar criar rota para desenvolvedores
 [x] Criar criar rota para projetos
-[ ] Criar menu de navegação
 [x] Listar Desenvolvedores
+[x] Criar criar rota para ranking
+[x] Exibir ranking
+[x] Criar criar rota para lançamento de horas trabalhadas
+[ ] Implementar funcionalidade de lançamento de horas trabalhadas
+
+--- Adicionais ---
+[ ] Criar menu de navegação
 [ ] Listar Projetos
 [ ] Criar funcionalidade de adicionar dev
 [ ] Criar funcionalidade de adicionar projeto
-[ ] Criar criar rota para lançamento de horas trabalhadas
-[ ] Criar criar rota para ranking
-...
 
------
+------
 
 Primeiramente, obrigado pelo seu interesse em trabalhar na Luby. Somos uma fábrica de software com mais de 110 desenvolvedores e 15 anos de mercado. Temos atuação em mais de 5 países e estamos em busca de talentos para integrar o nosso time no desenvolvimento .NET de forma 100% remota.
 
