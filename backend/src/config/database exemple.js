@@ -7,6 +7,6 @@ module.exports = {
     database: 'xxxxxx',
     define: {
         timestamps: true,
-        undescored: true,
-    }
+    },
+    dialectOptions: { multipleStatements: true }
 }

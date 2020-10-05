@@ -1,40 +1,85 @@
 # Desafio Back-end Luby Software
 
+## Instalação e execução
+- Entre na pasta cd backend;
+- Rode yarn para instalar as dependências;
+- Crie o arquivo de credenciais (database.js) conforme backend/src/config/database.exemple.js com as credenciais de acesso de um banco mysql;
+- Rode yarn sequelize db:create para criar o banco de dados;
+- Rode yarn sequelize db:migrate para executar as migrations;
+- Rode yarn start para iniciar a api.
+- Entre na pasta cd frontend/best-dev-web
+- Rode yarn para instalar as dependências;
+- Rode yarn start para iniciar a aplicação web.
+
+Na aplicação web é possível:
+- Adicionar desenvolvedor;
+- Adicionar as horas trabalhadas;
+- Acompanhar o ranking de desenvolvedores com base nas horas trabalhadas;
+- Listar todos os desenvolvedores;
+
+A aplicação vincula todo desenvolvedor ao projeto 'Project' para simplificar o fluxo, contudo a api suporta CRUD de projeto, desenvolvedor e horas trabalhadas.
+
+
 ## Checklist de planejamento
 
 ### Backend
- [x] - Criar estrutura inicial da api
- [x] - Criar server para api (express)
- [x] Adicionar dependências (mysql2, sequelize, mysql, ...)
- [x] Adficionar conexão com o banco de dados
- [x] Criar model (Developer)
- [x] Criar model (Project)
- [x] Criar migration (Developer)
- [x] Criar migration (Project)
- [x] Criar CRUD de desenvolvedor (developers)
- [x] Criar CRUD de projeto (projects)
- [x] Criar relacionamento de projeto com desenvolvedores (developerProjects)
- [x] Corrigir problema com o campo workTimeInMiliseconds na tabela de integração entre projeto e desenvolvedor (o campo não está sendo setado com nenhum comando do sequelize.)
- [x] Criar CRUD de lançamento de horas (worked hours) 
- [x] Criar endpoint para ranking
+ 
+- [x] Criar estrutura inicial da api
+
+- [x] Criar server para api (express)
+
+- [x] Adicionar dependências (mysql2, sequelize, mysql, ...)
+
+- [x] Adficionar conexão com o banco de dados
+
+- [x] Criar model (Developer)
+
+- [x] Criar model (Project)
+
+- [x] Criar migration (Developer)
+
+- [x] Criar migration (Project)
+
+- [x] Criar CRUD de desenvolvedor (developers)
+
+- [x] Criar CRUD de projeto (projects)
+
+- [x] Criar relacionamento de projeto com desenvolvedores (developerProjects)
+
+- [x] Corrigir problema com o campo workTimeInMiliseconds na tabela de integração entre projeto e desenvolvedor (o campo não está sendo setado com nenhum comando do sequelize.)
+
+- [x] Criar CRUD de lançamento de horas (worked hours) 
+
+- [x] Criar endpoint para ranking
 ... 
 
 ### Front-end
 
-[x] Criar estrutura inicial do projeto em react
-[x] Criar criar rota para desenvolvedores
-[x] Criar criar rota para projetos
-[x] Listar Desenvolvedores
-[x] Criar criar rota para ranking
-[x] Exibir ranking
-[x] Criar criar rota para lançamento de horas trabalhadas
-[ ] Implementar funcionalidade de lançamento de horas trabalhadas
+- [x] Criar estrutura inicial do projeto em react
+
+- [x] Criar criar rota para desenvolvedores
+
+- [x] Criar criar rota para projetos
+
+- [x] Listar Desenvolvedores
+
+- [x] Criar criar rota para ranking
+
+- [x] Exibir ranking
+
+- [x] Criar criar rota para lançamento de horas trabalhadas
+
+- [x] Implementar funcionalidade de lançamento de horas trabalhadas
+
+- [x] Criar funcionalidade de adicionar dev
 
 --- Adicionais ---
-[ ] Criar menu de navegação
-[ ] Listar Projetos
-[ ] Criar funcionalidade de adicionar dev
-[ ] Criar funcionalidade de adicionar projeto
+
+- [ ] Criar menu de navegação
+
+- [ ] Listar Projetos
+
+- [ ] Criar funcionalidade de adicionar projeto
 
 ------
 
