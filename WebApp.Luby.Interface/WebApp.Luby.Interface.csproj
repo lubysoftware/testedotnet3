@@ -2,6 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <NoWarn>NU1603</NoWarn>
     </PropertyGroup>
+
+    <ItemGroup>      
+      <ProjectReference Include="..\WebApp.Luby.Library\WebApp.Luby.Library.csproj" />
+      <ProjectReference Include="..\WebApp.Luby.Models\WebApp.Luby.Models.csproj" />
+    </ItemGroup>
 
 </Project>
