@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectService} from 'src/app/project.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class ProjectComponent implements OnInit {
   currentIndex = -1;
   title = '';
 
-  constructor(private myService: ProjectService, private route: ActivatedRoute, private router: Router) {
+  constructor(private myService: ProjectService) {
   }
 
   ngOnInit(): void {

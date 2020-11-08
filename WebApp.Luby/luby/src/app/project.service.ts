@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
-const baseUrl = 'http://dot-core.test/api/project';
+import {Project} from './project';
 
 @Injectable({
   providedIn: 'root'
@@ -10,33 +9,39 @@ const baseUrl = 'http://dot-core.test/api/project';
 
 export class ProjectService {
 
-  constructor(private http: HttpClient) { }
+  baseUrl = 'http://dot-core.test/api/project';
 
-  getAll(): Observable<any> {
-    return this.http.get(baseUrl);
+  constructor(private httpClient: HttpClient) { }
+
+  // getAll(): Observable<any> {
+  //   return this.httpClient.get(this.baseUrl);
+  // }
+
+  getAll(): Observable<Project[]> {
+    return this.httpClient.get<Project[]>(this.baseUrl);
   }
 
   get(id): Observable<any> {
-    return this.http.get(`${baseUrl}/${id}`);
+    return this.httpClient.get(`${this.baseUrl}/${id}`);
   }
 
   create(data): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.httpClient.post(this.baseUrl, data);
   }
 
   update(id, data): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.httpClient.put(`${this.baseUrl}/${id}`, data);
   }
 
   delete(id): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
 
   deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+    return this.httpClient.delete(this.baseUrl);
   }
 
   findByTitle(title): Observable<any> {
-    return this.http.get(`${baseUrl}?name=${title}`);
+    return this.httpClient.get(`${this.baseUrl}?name=${title}`);
   }
 }

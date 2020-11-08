@@ -10,11 +10,10 @@ import {DevDetailsComponent} from './dev-details/dev-details.component';
 import {ProjectComponent} from './project/project.component';
 import {ProjectAddComponent} from './project-add/project-add.component';
 import {ProjectDetailsComponent} from './project-details/project-details.component';
-
+import {AppRoutingModule} from './app-routing.module';
 import {ProjectService} from './project.service';
 import {DevService} from './dev.service';
 import {DotService} from './dot.service';
-
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -39,6 +38,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [DevService, DotService, ProjectService],
   bootstrap: [AppComponent]

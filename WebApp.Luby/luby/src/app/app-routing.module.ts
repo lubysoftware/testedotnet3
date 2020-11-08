@@ -1,14 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from './app.component';
 import {ProjectComponent} from './project/project.component';
 import {ProjectAddComponent} from './project-add/project-add.component';
-import {DevComponent} from './dev/dev.component';
 
 const routes: Routes = [
-  { path: 'projects/:id', component: ProjectAddComponent },
-  { path: '', redirectTo: '/projects', pathMatch: 'full' },
-
+  {path: '', redirectTo: 'projects', pathMatch: 'full'},
+  {path: 'projects', component: ProjectComponent},
+  {path: 'projects/:id', component: ProjectAddComponent},
+  {path: 'projects/add', component: ProjectComponent},
 ];
 
 
@@ -17,4 +16,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
