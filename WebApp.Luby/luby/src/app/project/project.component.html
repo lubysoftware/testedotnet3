@@ -1,0 +1,54 @@
+<app-project>
+  <div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <label>
+          <input [(ngModel)]="title" class="form-control" placeholder="Procurar pelo nome" type="text"/>
+        </label>
+        <div class="input-group-append">
+          <button (click)="searchTitle()" class="btn btn-outline-secondary" type="button">
+            Procurar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Todos</h4>
+      <ul *ngFor="let item of project; let i = index" [class.active]="i == currentIndex" class="list-group">
+        <li
+          class="list-group-item">
+          {{ item.project_name }}
+        </li>
+        <li
+          class="list-group-item">
+          {{ item.project_description }}
+        </li>
+      </ul>
+
+      <button (click)="removeData()" class="m-3 btn btn-sm btn-danger">
+        Apagar Todos
+      </button>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentData">
+        <h4>Todos</h4>
+        <div>
+          <label><strong>Título:</strong></label> {{ currentData.project_name }}
+        </div>
+        <div>
+          <label><strong>Descrição:</strong></label>
+          {{ currentData.project_description }}
+        </div>
+        <a class="badge badge-warning" routerLink="/projects/{{ currentData.project_id }}">
+          Editar
+        </a>
+      </div>
+
+      <div *ngIf="!currentData">
+        <br/>
+        <p>Clique...</p>
+      </div>
+    </div>
+  </div>
+</app-project>
+<router-outlet></router-outlet>

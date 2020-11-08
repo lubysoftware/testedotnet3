@@ -1,0 +1,45 @@
+<div class="container">
+  <div *ngIf="currentData" class="edit-form">
+    <h4>Projetos</h4>
+    <form>
+      <div class="form-group">
+        <label for="project_name">Título</label>
+        <input
+          type="text"
+          class="form-control"
+          id="project_name"
+          [(ngModel)]="currentData.project_name"
+          name="project_name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="project_description">Descrição</label>
+        <input
+          type="text"
+          class="form-control"
+          id="project_description"
+          [(ngModel)]="currentData.project_description"
+          name="project_description"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteData()">
+      Apagar
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success"
+      (click)="updateData()"
+    >
+      Atualizar
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentData">
+    <br />
+    <p>Não foi possível realizar as alterações. Tente novamente mais tarde...</p>
+  </div>
+</div>
