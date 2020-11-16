@@ -1,0 +1,10 @@
+<mat-card>
+  <h1>Ranking dos 5 desenvolvedores da semana com maior média de horas trabalhadas</h1>
+  <div>
+    <div style="display: block">
+      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [colors]="lineChartColors" [legend]="barChartLegend" [chartType]="barChartType">
+      </canvas>
+    </div>
+  </div>
+</mat-card>
