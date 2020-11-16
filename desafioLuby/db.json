@@ -1,0 +1,135 @@
+{
+  "desenvolvedores": [
+    {
+      "id": 2,
+      "nome": "João souza",
+      "idade": "22",
+      "github": "https://github.com",
+      "tecnologias": [
+        {
+          "nome": "Java"
+        },
+        {
+          "nome": "C#"
+        }
+      ]
+    },
+    {
+      "id": "dd9ff617-0e4d-f89c-b426-40045a4205af",
+      "nome": "Marcos",
+      "idade": 21,
+      "github": "Llimaa",
+      "tecnologias": [
+        {
+          "nome": "C#"
+        },
+        {
+          "nome": "Java"
+        },
+        {
+          "nome": "Nodejs"
+        },
+        {
+          "nome": "Angular"
+        }
+      ]
+    },
+    {
+      "id": "f89cf617-0e4d-f89c-b426-40045a4205af",
+      "nome": "Maria",
+      "idade": 21,
+      "github": "Maria",
+      "tecnologias": [
+        {
+          "nome": "C#"
+        }
+      ]
+    },
+    {
+      "id": "40045a4205af-0e4d-f89c-b426-40045a4205af",
+      "nome": "Guilherme",
+      "idade": 21,
+      "github": "Guilherme",
+      "tecnologias": [
+        {
+          "nome": "Nodejs"
+        }
+      ]
+    },
+    {
+      "id": "40045a4205af-b426-0e4d-b426-40045a4205af",
+      "nome": "Vinicios",
+      "idade": 21,
+      "github": "Vinicios",
+      "tecnologias": [
+        {
+          "nome": "Java"
+        },
+        {
+          "nome": "Nodejs"
+        }
+      ]
+    }
+  ],
+  "projetos": [
+    {
+      "id": 1,
+      "nome": "Desafio Luby",
+      "descricao": "Desafio Back-end Luby Software",
+      "desenvolvedor": "Marcos"
+    },
+    {
+      "id": 2,
+      "nome": "Jogo da velha",
+      "descricao": "desenvolver jogo da velha em C#",
+      "desenvolvedor": "Marcos"
+    }
+  ],
+  "lancamentos": [
+    {
+      "id": "7e15bf77-b634-d90f-86a0-d532ac10407f",
+      "projeto": "Jogo da velha",
+      "desenvolvedor": "Marcos",
+      "dataInicio": "2020-11-17",
+      "dataFim": "2020-11-18",
+      "horaInicio": "11:00",
+      "horaFim": "11:00"
+    },
+    {
+      "id": "f8749fcb-f9b0-be26-39be-22a59df2538f",
+      "projeto": "Desafio Luby",
+      "desenvolvedor": "Marcos",
+      "dataInicio": "2020-11-10",
+      "dataFim": "2020-11-16",
+      "horaInicio": "19:00",
+      "horaFim": "15:09"
+    }
+  ],
+  "rankings": [
+    {
+      "id": "d90f-86a0-b634-d90f-86a0-7e15bf77",
+      "desenvolvedor": "João souza",
+      "horasTrabalhadas": 45
+    },
+    {
+      "id": "d90f-86a0-b634-d90f-86a0-b634-d90f",
+      "desenvolvedor": "Maria",
+      "horasTrabalhadas": 60
+    },
+    {
+      "id": "7e15bf77-b634-d90f-86a0-d532ac10407f",
+      "desenvolvedor": "Marcos",
+      "horasTrabalhadas": 87
+    },
+    {
+      "id": "10w5bf77-b634-d9fe-86a0-d532ac104033",
+      "desenvolvedor": "Guilherme",
+      "horasTrabalhadas": 70
+    },
+    {
+      "id": "b6345bf77-b634-d90f-b634-d532ac10b634",
+      "desenvolvedor": "Vinicios",
+      "horasTrabalhadas": 42.3
+    }
+  ]
+}
