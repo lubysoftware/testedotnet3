@@ -1,0 +1,73 @@
+﻿@using Controle_de_Horas.Models
+
+@{
+    var lstRetorno = Model as List<Cadastro_Desenvolvedor>;
+}
+
+@{
+    ViewBag.Title = "_PartialResult";
+}
+
+<div class="row">
+    <br />
+    <div class="row center-block">
+
+        <!--TABELA-->
+        <table class="table table-bordered table-striped">
+
+            <!--COLUNAS-->
+            <thead class="thin-border-bottom">
+                <tr>
+                    <th class="text-center"><i class="ace-icon fa fa-caret-right blue"></i>Código</th>
+                    <th class="text-center"><i class="ace-icon fa fa-caret-right blue"></i>Nome</th>
+                    <th class="text-center"><i class="ace-icon fa fa-caret-right blue"></i>Cargo</th>
+                    <th class="text-center"><i class="ace-icon fa fa-caret-right blue"></i></th>
+                </tr>
+            </thead>
+
+            <!--LINHAS-->
+            <tbody>
+
+                @{
+                    if (lstRetorno != null)
+                    {
+                        foreach (var item in lstRetorno)
+                        {
+                            <tr id="@item.Id">
+                                <td>@item.Id</td>
+                                <td>@item.Nome</td>
+                                <td>@item.Cargo</td>
+                                <td>
+                                    <button class="btn btn-xs btn-danger btnDeletar" title="Deletar" id="btnDeletar">
+                                        Deletar
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<script>
+    $(".btnDeletar").click(function () {
+        var item = {
+            Id: $(this).closest("tr").attr("Id"),
+        }
+
+        $.ajax({
+            url: "../Desenvolvedor/DeletarItem",
+            type: "POST",
+            data: { item: item },
+            success: function (dados) {
+                alert(dados)
+                window.location.href = "../Desenvolvedor/Index";
+            }
+        });
+    });
+</script>

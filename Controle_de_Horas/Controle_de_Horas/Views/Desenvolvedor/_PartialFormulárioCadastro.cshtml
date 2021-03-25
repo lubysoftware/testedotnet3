@@ -1,0 +1,65 @@
+﻿@model  Controle_de_Horas.Models.Cadastro_Desenvolvedor
+
+@{
+    ViewBag.Title = "Formulário de Cadastro";
+}
+
+<div class="navbar" id="idCadastro">
+    <div class="row">
+        <h4>
+            Central de Desenvolvedor - Cadastro
+        </h4>
+    </div>
+
+    <hr />
+    <div>
+        <div class="row">
+            <div class="col-md-7">
+                <label style="margin-right: 9px;">Nome</label>
+                @Html.TextBoxFor(k => k.Nome, new { @placeholder = "Nome do Desensolvedor" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7">
+                <label style="margin-right: 9px;">Cargo</label>
+                @Html.TextBoxFor(k => k.Cargo, new { @placeholder = "Cargo do Desensolvedor" })
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <button class="btn btn-default" id="btnVoltar">Voltar</button>
+            <button class="btn btn-success" id="btnSalvar">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#btnVoltar").click(function () {
+        window.location.href = "../Desenvolvedor/index";
+    });
+
+    $("#btnSalvar").click(function () {
+        var paramInsert = {
+            Nome: $('#Nome').val(),
+            Cargo: $('#Cargo').val(),
+        }
+
+        if (paramInsert.Nome == "" || paramInsert.Cargo == "") {
+            alert("Preencher os Campos Nome e Cargo antes de Salvar.")
+        }
+        else {
+
+            $.ajax({
+                url: "../Desenvolvedor/SalvarCadastro",
+                type: "POST",
+                data: { paramInsert: paramInsert },
+                success: function (dados) {
+                    alert(dados)
+                    window.location.href = "../Desenvolvedor/index";
+                }
+            });
+        }        
+    });
+</script>

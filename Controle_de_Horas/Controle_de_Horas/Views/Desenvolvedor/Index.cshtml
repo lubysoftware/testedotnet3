@@ -1,0 +1,81 @@
+﻿@model  Controle_de_Horas.Models.Cadastro_Desenvolvedor
+
+@{
+    ViewBag.Title = "Desenvolvedor";
+}
+
+
+<div class="navbar" id="idPesquisa">
+    <div class="row">
+        <h4>
+            Central de Desenvolvedor - Pesquisa
+        </h4>
+    </div>
+
+    <hr />
+    <div>
+        <div class="row">
+            <label>Código</label>
+            @Html.TextBoxFor(k => k.Id)
+        </div>
+
+        <div class="row">
+            <label style="margin-right: 9px;">Nome</label>
+            @Html.TextBoxFor(k => k.Nome)
+        </div>
+
+        <div class="row">
+            <label style="margin-right: 9px;">Cargo</label>
+            @Html.TextBoxFor(k => k.Cargo)
+        </div>
+
+        <br />
+        <div class="row">
+            <button class="btn btn-primary" id="btnPesquisar">Pesquisar</button>
+            <button class="btn btn-warning" id="btnCadastrar">Cadastrar</button>
+        </div>
+    </div>
+
+    <div id="idResult">
+
+    </div>
+</div>
+
+<div id="idPartialCadastro">
+
+</div>
+
+@section Scripts {
+    <script>
+        $("#btnPesquisar").click(function () {
+            var paramPesquisa = {
+                Id: $('#Id').val(),
+                Nome: $('#Nome').val(),
+                Cargo: $('#Cargo').val(),
+            }
+
+            $.ajax({
+                url: "../Desenvolvedor/Listar",
+                type: "POST",
+                data: { paramPesquisa: paramPesquisa },
+                success: function (data) {
+                    $("#idPartialCadastro").html(data);
+                    
+                }
+            });
+        });
+
+        $("#btnCadastrar").click(function () {
+            $.ajax({
+                url: "../Desenvolvedor/Cadastrar",
+                type: "POST",
+                success: function (data) {
+                    $("#idPesquisa").html('');
+                    $("#idPesquisa").addClass('hide');
+
+                    $("#idPartialCadastro").html(data);
+                }
+            });
+        });
+    </script>
+}
