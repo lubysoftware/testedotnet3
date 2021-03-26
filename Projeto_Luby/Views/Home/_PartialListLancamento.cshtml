@@ -1,0 +1,73 @@
+﻿@using Projeto_Luby.ViewModel
+
+@{
+    var lstLancamento = Model as List<LANCAMENTO_HORAS>;
+}
+
+<hr />
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Data</th>
+            <th>Horas</th>
+            <th>Botões</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            if (lstLancamento != null)
+            {
+                if (lstLancamento.Count > 0) {
+                    foreach (var entidade in lstLancamento)
+                    {
+                    <tr id="@entidade.ID">
+                        <td>@entidade.NOME</td>
+                        <td>@entidade.DS_PERIODO</td>
+                        <td>@entidade.HORAS</td>
+                        <td>
+                            <button class="btn btn-xs btn-danger btnDeletar" title="Deletar">Deletar</button>
+                        </td>
+
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">Nenhum Registro Encontrado</td>
+
+                    </tr>
+                }
+            }
+            }
+    </tbody>
+
+</table>
+
+
+<script>
+
+    $(".btnDeletar").click(function () {
+
+        var model = {
+            ID: $(this).closest("tr").attr("id"),
+        }
+        var confirmacao = confirm("Deseja realmente excluir esse lançamento?")
+        if (confirmacao == true) {
+            $.ajax({
+                url: "../Home/DeletarLancamento",
+                type: "POST",
+                data: model,
+                success: function (dados) {
+                    $("#btnPesquisar").click();
+
+                }
+            });
+        }
+    })
+
+</script>

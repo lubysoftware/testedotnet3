@@ -1,0 +1,78 @@
+﻿@model Projeto_Luby.ViewModel.PROJETOS
+
+@{
+    ViewBag.Title = "Cadastro do Projeto";
+}
+
+<div class="alert alert-info">
+    <div align="center">
+        <h2 class="panel-title"> <i>Cadastro do Projeto </i></h2>
+    </div>
+</div>
+
+
+
+<div class="panel-body">
+    <fieldset>
+        <legend> <strong>Dados do Cadastro </strong></legend>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="">
+                    Nome:
+                </label>
+                @Html.TextBoxFor(l => l.NOME_PROJETO, new { @class = "form-control", @placeholder = "Nome do Projeto" })
+            </div>
+            <div class="col-md-4">
+                <label class="">
+                    Responsavel:
+                </label>
+                @Html.DropDownListFor(l => l.RESPONSAVEL, (IEnumerable<SelectListItem>)ViewBag.ResponsavelCAD, "Selecione", new { @class = "form-control" })
+            </div>
+            <br />
+            <div class="col-md-4">
+                <button class="btn  btn-warning" type="submit" id="btnInserir" title="Inserir">
+                    <i class="fa fa-plus" aria-hidden="true"></i>  Inserir
+                </button>
+                <button type="button" id="btnVoltar" class="btn btn-danger" title="Voltar" >
+                    <i class="ace-icon fa fa-arrow-left"></i>
+                    Voltar
+                </button>
+            </div>
+
+        </div>
+
+    </fieldset>
+</div>
+
+@section Scripts{
+    <script>
+        $("#btnInserir").click(function () { 
+            
+            var model = {
+                NOME_PROJETO: $("#NOME_PROJETO").val(),
+                RESPONSAVEL: $("#RESPONSAVEL").val()
+            }
+
+            if (model.NOME_PROJETO == "" || model.RESPONSAVEL == "") {
+                alert("Verifique se todos os campos foram preenchidos corretamente!")
+            } else {
+                $.ajax({
+                    url: "../Home/InserirProjeto",
+                    type: "POST",
+                    data: model,
+                    success: function (dados) {
+                        if (dados.isSuccess == true) {
+                            $("#NOME_PROJETO").val("")
+                            $("#RESPONSAVEL").val("")
+                        }
+                        alert(dados.mensagemCallback);
+                    }
+                });
+            }
+        })
+        
+        $("#btnVoltar").click(function () {  
+            window.location.href = "../Home/Projetos";
+        })
+    </script>
+}

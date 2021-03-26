@@ -1,0 +1,96 @@
+﻿@using Projeto_Luby.ViewModel
+
+@{
+    var lstProjetos = Model as List<PROJETOS>;
+}
+
+<hr />
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th>Nome do Projeto</th>
+            <th>Responsavel</th>
+            <th>Botões</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            if (lstProjetos != null)
+            {
+                if (lstProjetos.Count > 0)
+                {
+                    foreach (var entidade in lstProjetos)
+                    {
+
+                        <tr id="@entidade.ID">
+                            <td>@entidade.NOME_PROJETO</td>
+                            <td>@entidade.RESPONSAVEL</td>
+                            <td>
+                                <button class="btn btn-xs btn-success btnEditar" title="Editar">Editar</button>
+                                <button class="btn btn-xs btn-danger btnDeletar" title="Deletar">Deletar</button>
+                            </td>
+
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan = "3" > Nenhum Registro Encontrado</td>
+                    </tr>
+                }
+
+
+            }
+        }
+    </tbody>
+
+</table>
+
+<script>
+
+    $(".btnDeletar").click(function () {
+
+        var model = {
+            ID: $(this).closest("tr").attr("id"),
+        }
+        var confirmacao = confirm("Deseja realmente excluir esse projeto?")
+        if (confirmacao == true) {
+            $.ajax({
+                url: "../Home/DeletarProjeto",
+                type: "POST",
+                data: model,
+                success: function (dados) {
+                    $("#btnPesquisar").click();
+
+                }
+            });
+        }
+    })
+
+    $(".btnEditar").click(function () {
+        var ID = $(this).closest("tr").attr("id")
+        $.ajax({
+            url: "../Home/DadosEditarProjetos",
+            type: "POST",
+            data: { ID: ID },
+            success: function (dados) {
+                $("#NOME_PROJETO").val(dados.NOME_PROJETO);
+                $("#RESPONSAVEL").val(dados.RESPONSAVEL);
+                $("#ID").val(dados.ID);
+                $("#btnPesquisar").addClass('hide');
+                $("#btnCadastrar").addClass('hide');
+                $("#btnAlterar").removeClass('hide');
+                $("#divResult").addClass('hide');
+                $("#titulo1").addClass('hide');
+                $("#titulo2").removeClass('hide');
+                $("#btnCancelar").removeClass('hide');
+            }
+        });
+
+    })
+
+</script>
