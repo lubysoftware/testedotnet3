@@ -13,11 +13,6 @@ namespace Controle_de_Horas.Controllers.Desenvolvedor
     {
         Cadastro_DesenvolvedorAppService _cadDesenv = new Cadastro_DesenvolvedorAppService();
 
-        //private readonly ICadastro_Desenvolvedor _cadDesenv;
-        //public DesenvolvedorController(ICadastro_Desenvolvedor cadDesenv)
-        //{
-        //    _cadDesenv = cadDesenv;
-        //}
         // GET: Desenvolvedor
         public ActionResult Index()
         {
@@ -28,10 +23,6 @@ namespace Controle_de_Horas.Controllers.Desenvolvedor
             var lstRetorno = _cadDesenv.ListarDev().ToList();
 
             return PartialView("_PartialResult", lstRetorno);
-        }
-        public ActionResult Cadastrar()
-        {
-            return PartialView("_PartialFormulárioCadastro");
         }
 
         public ActionResult SalvarCadastro(Cadastro_Desenvolvedor paramInsert)
@@ -52,7 +43,21 @@ namespace Controle_de_Horas.Controllers.Desenvolvedor
             }
             return JsonResult(mensagem: "Desenvolvedor Deletado com Sucesso!");
         }
+        public JsonResult Editar(string id)
+        {
+            var obj = _cadDesenv.ListarDev().FirstOrDefault(k => k.Id == Convert.ToInt32(id));
 
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult EditarItem(Cadastro_Desenvolvedor paramEdit)
+        {
+            if (paramEdit.Nome != null & paramEdit.Cargo != null)
+            {
+                _cadDesenv.Editar(paramEdit);
+            }
+
+            return JsonResult(mensagem: "Desenvolvedor Editado com Sucesso!");
+        }
         private ActionResult JsonResult(string mensagem)
         {
             var jsonRetorno = Json(mensagem, JsonRequestBehavior.AllowGet);

@@ -1,0 +1,72 @@
+﻿@using Controle_de_Horas.Models
+
+@{
+    var lstRetorno = Model as List<Projeto>;
+}
+
+<div>
+
+    <!--TABELA-->
+    <table class="table table-bordered table-striped">
+
+        <!--COLUNAS-->
+        <thead>
+            <tr>
+                <th class="text-center">Código do Projeto</th>
+                <th class="text-center">Descrição</th>
+                <th class="text-center">Data Inicio</th>
+                <th class="text-center">Data Fim</th>
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+
+        <!--LINHAS-->
+        <tbody>
+
+            @{
+                if (lstRetorno != null)
+                {
+                    foreach (var item in lstRetorno)
+                    {
+                        <tr id="@item.IdProjeto">
+                            <td>@item.IdProjeto</td>
+                            <td>@item.Descricao</td>
+                            <td>@item.Data_Inicio</td>
+                            <td>@item.Data_Fim</td>
+                            <td>
+                                <button class="btn btn-sm btn-info btnEditarProjeto">
+                                    Editar
+                                </button>
+
+                                <button class="btn btn-sm btn-danger btnDeletarProjeto">
+                                    Deletar
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+    $(".btnDeletarProjeto").click(function () {
+        var item = {
+            IdProjeto: $(this).closest("tr").attr("Id"),
+        }
+
+        $.ajax({
+            url: "../Projeto/DeletarProjeto",
+            type: "POST",
+            data: { item: item },
+            success: function (dados) {
+                alert(dados)
+                window.location.href = "../Projeto/Index";
+            }
+        });
+    });
+</script>

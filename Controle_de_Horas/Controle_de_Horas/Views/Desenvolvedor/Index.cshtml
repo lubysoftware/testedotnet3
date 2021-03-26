@@ -4,17 +4,29 @@
     ViewBag.Title = "Desenvolvedor";
 }
 
+<div class="navbar" id="idPesquisaDev">
 
-<div class="navbar" id="idPesquisa">
-    <div class="row">
-        <h4>
+    <div class="row" id="idPesquisa">
+        <h3>
             Central de Desenvolvedor - Pesquisa
-        </h4>
+        </h3>
+    </div>
+
+    <div class="row hide" id="idCadastrar">
+        <h3>
+            Central de Desenvolvedor - Cadastrar
+        </h3>
+    </div>
+
+    <div class="row hide" id="idEditar">
+        <h3>
+            Central de Desenvolvedor - Editar
+        </h3>
     </div>
 
     <hr />
-    <div>
-        <div class="row">
+    <div class="col-md-7">
+        <div class="row" id="idcod">
             <label>Código</label>
             @Html.TextBoxFor(k => k.Id)
         </div>
@@ -25,23 +37,23 @@
         </div>
 
         <div class="row">
-            <label style="margin-right: 9px;">Cargo</label>
+            <label style="margin-right: 8px;">Cargo</label>
             @Html.TextBoxFor(k => k.Cargo)
         </div>
 
         <br />
-        <div class="row">
+        <div class="col-md-4" style=" margin-left: 21px;">
             <button class="btn btn-primary" id="btnPesquisar">Pesquisar</button>
             <button class="btn btn-warning" id="btnCadastrar">Cadastrar</button>
+            <button class="btn btn-default hide" id="btnVoltar">Voltar</button>
+            <button class="btn btn-success hide" id="btnEditar">Editar</button>
+            <button class="btn btn-success hide" id="btnSalvar">Salvar</button>
         </div>
     </div>
 
-    <div id="idResult">
-
-    </div>
 </div>
 
-<div id="idPartialCadastro">
+<div id="idPartialDev">
 
 </div>
 
@@ -59,23 +71,66 @@
                 type: "POST",
                 data: { paramPesquisa: paramPesquisa },
                 success: function (data) {
-                    $("#idPartialCadastro").html(data);
-                    
+                    $("#idPartialDev").html(data);
+
                 }
             });
         });
 
         $("#btnCadastrar").click(function () {
-            $.ajax({
-                url: "../Desenvolvedor/Cadastrar",
-                type: "POST",
-                success: function (data) {
-                    $("#idPesquisa").html('');
-                    $("#idPesquisa").addClass('hide');
+            $("#btnCadastrar").addClass('hide');
+            $("#btnPesquisar").addClass('hide');
+            $("#btnEditar").addClass('hide');
+            $("#idcod").addClass('hide');
 
-                    $("#idPartialCadastro").html(data);
+            $("#idPesquisa").addClass('hide');
+            $("#idEditar").addClass('hide');
+            $("#idCadastrar").removeClass('hide');
+
+            $("#btnVoltar").removeClass('hide');
+            $("#btnSalvar").removeClass('hide');
+
+            $("#idPartialDev").html('');
+        });
+
+        $("#btnEditar").click(function () {
+            var paramEdit = {
+                Id: $('#Id').val(),
+                Nome: $('#Nome').val(),
+                Cargo: $('#Cargo').val(),
+            }
+
+            $.ajax({
+                url: "../Desenvolvedor/EditarItem",
+                type: "POST",
+                data: { paramEdit: paramEdit },
+                success: function (dados) {
+                    alert(dados)
+                    window.location.href = "../Desenvolvedor/index";
                 }
             });
+        });
+
+        $("#btnSalvar").click(function () {
+            var paramInsert = {
+                Id: $('#Id').val(),
+                Nome: $('#Nome').val(),
+                Cargo: $('#Cargo').val(),
+            }
+
+            $.ajax({
+                url: "../Desenvolvedor/SalvarCadastro",
+                type: "POST",
+                data: { paramInsert: paramInsert },
+                success: function (dados) {
+                    alert(dados)
+                    window.location.href = "../Desenvolvedor/index";
+                }
+            });
+        });
+
+        $("#btnVoltar").click(function () {
+            window.location.href = "../Desenvolvedor/index";
         });
     </script>
 }

@@ -1,7 +1,7 @@
 ﻿@using Controle_de_Horas.Models
 
 @{
-    var lstDesenvolvedores = Model as List<LancamentoDeHoras>;
+    var lstDesenvolvedores = Model as List<Lancamento_De_Horas>;
 }
 
 @{
@@ -13,10 +13,10 @@
     <div class="row center-block">
         <!-- HEADER -->
         <div class="widget-header">
-            <h4 class="widget-title lighter smaller">
+            <h3 class="widget-title lighter smaller">
                 <i class="ace-icon fa fa-star orange"></i>
                 Ranking dos Desenvolvedores
-            </h4>
+            </h3>
         </div>
 
         <!--TABELA-->
@@ -41,7 +41,7 @@
                         {
                             <tr id="@dev.Id">
                                 <td>@dev.NomeDev</td>
-                                <td>@dev.Horastrabalhadas</td>
+                                <td>@string.Format("{0} horas", dev.Horas_trabalhadas)</td>
                                 <td>@string.Format("{0} até {1}", @dev.DataInicio, @dev.DataFim)</td>
                             </tr>
                         }

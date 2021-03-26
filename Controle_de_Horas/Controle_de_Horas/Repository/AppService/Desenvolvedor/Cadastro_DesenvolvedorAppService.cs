@@ -26,5 +26,11 @@ namespace Controle_de_Horas.Repository.AppService.Desenvolvedor
             conexao.Entry(item).State = EntityState.Deleted;
             conexao.SaveChanges();
         }
+
+        public void Editar(Cadastro_Desenvolvedor paramEdit)
+        {
+            conexao.Entry(paramEdit).State = EntityState.Modified;
+            conexao.SaveChanges();
+        }
     }
 }

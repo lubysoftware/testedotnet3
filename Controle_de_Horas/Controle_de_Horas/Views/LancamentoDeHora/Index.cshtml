@@ -1,7 +1,97 @@
-﻿
+﻿@model Controle_de_Horas.Models.Lancamento_De_Horas
+
 @{
     ViewBag.Title = "Lançamento de Hora";
 }
 
-<h2>Index Lançamento de hora</h2>
+<div class="navbar">
+    <div class="row">
+        <h4>
+            Lançamento de Horas
+        </h4>
+    </div>
 
+    <hr />
+    <div class="col-md-7">
+        <div class="row">
+            <label style=" margin-right: 77px;">Projeto</label>
+            @Html.DropDownListFor(k => k.DescriProjeto, (IEnumerable<SelectListItem>)ViewBag.Projeto, "Selecione")
+        </div>
+
+        <div class="row">
+            <label style="margin-right: 25px;">Desenvolvedor</label>
+            @Html.DropDownListFor(k => k.NomeDev, (IEnumerable<SelectListItem>)ViewBag.Desenvolvedor, "Selecione")
+        </div>
+
+        <div class="row">
+            <label>Horas Trabalhadas</label>
+            @Html.TextBoxFor(k => k.Horas_trabalhadas, new { @value = DateTime.Now })
+        </div>
+
+        <div class="row">
+            <label style=" margin-right: 73px;">Periodo</label>
+            @Html.TextBoxFor(k => k.DataInicio, new { @class = "date-picker", @Value = DateTime.Now.ToShortDateString(), @placeholder = "Inicio" })
+            /
+            @Html.TextBoxFor(k => k.DataFim, new { @class = "date-picker", @Value = DateTime.Now.ToShortDateString(), @placeholder = "Fim" })
+        </div>
+
+        <br />
+        <div class="col-md-4" style="margin-left: 30%;">
+            <button class="btn btn-primary" id="btnListar">Listar</button>
+            <button class="btn btn-warning" id="btnLancar">Lançar</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="idPartialProj">
+
+</div>
+
+@section Scripts {
+    <script>
+        $("#btnLancar").click(function () {
+            var paramInsert = {
+                DescriProjeto: $('#DescriProjeto').val(),
+                NomeDev: $('#NomeDev').val(),
+                Horas_trabalhadas: $('#Horas_trabalhadas').val(),
+                DataInicio: $('#DataInicio').val(),
+                DataFim: $('#DataFim').val()
+            }
+
+            if (paramInsert.NomeDev == "" || paramInsert.IdProjeto == "") {
+                alert("Selecione o Projeto e o Desenvolvedor .");
+            }
+            else {
+                $.ajax({
+                    url: "../LancamentoDeHora/LançarHoras",
+                    type: "POST",
+                    data: { paramInsert: paramInsert },
+                    success: function (data) {
+                        alert(data);
+                        window.location.href = "../LancamentoDeHora/Index";
+                    }
+                });
+            }
+        });
+
+        $("#btnListar").click(function () {
+            var paramPesquisa = {
+                IdProjeto: $('#IdProjeto').val(),
+                NomeDev: $('#NomeDev').val(),
+                DataInicio: $('#DataInicio').val(),
+                DataFim: $('#DataFim').val()
+            }
+
+            $.ajax({
+                url: "../LancamentoDeHora/Listar",
+                type: "POST",
+                data: { paramPesquisa: paramPesquisa },
+                success: function (data) {
+                    $("#idPartialProj").html(data);
+
+                }
+            });
+        });
+    </script>
+}

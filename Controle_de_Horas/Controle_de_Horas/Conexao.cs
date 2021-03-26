@@ -16,11 +16,16 @@ namespace Controle_de_Horas
         }
 
         public DbSet<Cadastro_Desenvolvedor> Cadastro_Desenvolvedor { get; set; }
+        public DbSet<Projeto> Projeto { get; set; }
+        public DbSet<Lancamento_De_Horas> Lancamento_De_Horas { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Configurations.Add(new CADASTRO_DESENVOLVEDOR_MAPPING());
+            modelBuilder.Configurations.Add(new PROJETO_MAPPING());
+            modelBuilder.Configurations.Add(new LançamentoDeHoraMAPPING());
         }
     }
 }

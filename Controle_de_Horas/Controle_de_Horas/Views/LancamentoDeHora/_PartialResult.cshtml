@@ -1,7 +1,7 @@
 ﻿@using Controle_de_Horas.Models
 
 @{
-    var lstRetorno = Model as List<Cadastro_Desenvolvedor>;
+    var lstRetorno = Model as List<Lancamento_De_Horas>;
 }
 
 <div>
@@ -13,9 +13,11 @@
         <thead>
             <tr>
                 <th class="text-center">Código</th>
-                <th class="text-center">Nome</th>
-                <th class="text-center">Cargo</th>
-                <th class="text-center"></th>
+                <th class="text-center">Descrição do Projeto</th>
+                <th class="text-center">Nome do Desenvolvedor</th>
+                <th class="text-center">Horas trabalhadas</th>
+                <th class="text-center">Data Inicio</th>
+                <th class="text-center">Data Fim</th>
             </tr>
         </thead>
 
@@ -29,17 +31,11 @@
                     {
                         <tr id="@item.Id">
                             <td>@item.Id</td>
-                            <td>@item.Nome</td>
-                            <td>@item.Cargo</td>
-                            <td>
-                                <button class="btn btn-sm btn-info btnEditar">
-                                    Editar
-                                </button>
-
-                                <button class="btn btn-sm btn-danger btnDeletar">
-                                    Deletar
-                                </button>
-                            </td>
+                            <td>@item.DescriProjeto</td>
+                            <td>@item.NomeDev</td>
+                            <td>@item.Horas_trabalhadas</td>
+                            <td>@item.DataInicio</td>
+                            <td>@item.DataFim</td>
                         </tr>
                     }
                 }
@@ -65,7 +61,7 @@
 
                 $("#Id").attr("disabled","disabled");
                 $("#idPartialDev").html('');
-                
+
                 $("#btnEditar").removeClass('hide');
                 $("#idEditar").removeClass('hide');
                 $("#btnVoltar").removeClass('hide');

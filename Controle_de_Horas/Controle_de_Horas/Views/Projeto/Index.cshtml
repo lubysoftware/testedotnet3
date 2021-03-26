@@ -1,7 +1,93 @@
-﻿
+﻿@model Controle_de_Horas.Models.Projeto
 @{
     ViewBag.Title = "Projeto";
 }
 
-<h2>Index Projeto</h2>
+<div class="navbar" id="idPesquisa">
+    <div class="row" id="idPesquisaProj">
+        <h3>
+            Central de Desenvolvedor - Pesquisa
+        </h3>
+    </div>
 
+    <div class="row hide" id="idCadastrarProj">
+        <h3>
+            Central de Desenvolvedor - Cadastrar
+        </h3>
+    </div>
+
+    <div class="row hide" id="idEditarProj">
+        <h3>
+            Central de Desenvolvedor - Editar
+        </h3>
+    </div>
+
+    <hr />
+    <div class="col-md-7">
+        <div class="row">
+            <label style="margin-right: 28px;">Código</label>
+            @Html.TextBoxFor(k => k.IdProjeto)
+        </div>
+
+        <div class="row">
+            <label style="margin-right: 9px;">Descrição</label>
+            @Html.TextBoxFor(k => k.Descricao)
+        </div>
+
+        <div class="row">
+            <label style="margin-right: 24px;">Periodo</label>
+            @Html.TextBoxFor(k => k.Data_Inicio, new { @Value = DateTime.Now.ToShortDateString(), @placeholder = "Inicio" })
+            até
+            @Html.TextBoxFor(k => k.Data_Fim, new { @Value = DateTime.Now.ToShortDateString(), @placeholder = "Fim" })
+        </div>
+
+        <br />
+        <div class="col-md-4" style="margin-left: 22%;">
+            <button class="btn btn-primary" id="btnPesquisarProj">Pesquisar</button>
+            <button class="btn btn-warning" id="btnCadastrarProj">Cadastrar</button>
+            <button class="btn btn-default hide" id="btnVoltarProj">Voltar</button>
+            <button class="btn btn-success hide" id="btnEditarProj">Editar</button>
+            <button class="btn btn-success hide" id="btnSalvarProj">Salvar</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="idPartialProjeto">
+
+</div>
+
+@section Scripts {
+    <script>
+        $("#btnPesquisar").click(function () {
+            var paramPesquisa = {
+                IdProjeto: $('#IdProjeto').val(),
+                Descricao: $('#Descricao').val(),
+                Data_Inicio: $('#Data_Inicio').val(),
+                Data_Fim: $('#Data_Fim').val()
+            }
+
+            $.ajax({
+                url: "../Projeto/ListarProjetos",
+                type: "POST",
+                data: { paramPesquisa: paramPesquisa },
+                success: function (data) {
+                    $("#idPartialProjeto").html(data);
+                }
+            });
+        });
+
+        $("#btnCadastrarProjeto").click(function () {
+            $.ajax({
+                url: "../Projeto/Cadastrar",
+                type: "POST",
+                success: function (data) {
+                    $("#idPesquisa").html('');
+                    $("#idPesquisa").addClass('hide');
+
+                    $("#idPartialProjeto").html(data);
+                }
+            });
+        });
+    </script>
+}
