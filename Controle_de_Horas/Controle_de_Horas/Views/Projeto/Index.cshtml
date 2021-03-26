@@ -6,25 +6,25 @@
 <div class="navbar" id="idPesquisa">
     <div class="row" id="idPesquisaProj">
         <h3>
-            Central de Desenvolvedor - Pesquisa
+            Central de Projeto - Pesquisa
         </h3>
     </div>
 
     <div class="row hide" id="idCadastrarProj">
         <h3>
-            Central de Desenvolvedor - Cadastrar
+            Central de Projeto - Cadastrar
         </h3>
     </div>
 
     <div class="row hide" id="idEditarProj">
         <h3>
-            Central de Desenvolvedor - Editar
+            Central de Projeto - Editar
         </h3>
     </div>
 
     <hr />
     <div class="col-md-7">
-        <div class="row">
+        <div class="row" id="idCodProj">
             <label style="margin-right: 28px;">Código</label>
             @Html.TextBoxFor(k => k.IdProjeto)
         </div>
@@ -59,7 +59,7 @@
 
 @section Scripts {
     <script>
-        $("#btnPesquisar").click(function () {
+        $("#btnPesquisarProj").click(function () {
             var paramPesquisa = {
                 IdProjeto: $('#IdProjeto').val(),
                 Descricao: $('#Descricao').val(),
@@ -77,17 +77,68 @@
             });
         });
 
-        $("#btnCadastrarProjeto").click(function () {
-            $.ajax({
-                url: "../Projeto/Cadastrar",
-                type: "POST",
-                success: function (data) {
-                    $("#idPesquisa").html('');
-                    $("#idPesquisa").addClass('hide');
+        $("#btnCadastrarProj").click(function () {
+            $("#btnCadastrarProj").addClass('hide');
+            $("#btnPesquisarProj").addClass('hide');
+            $("#btnEditarProj").addClass('hide');
+            $("#IdProjeto").addClass('hide');
+            $("#idCodProj").addClass('hide');
 
-                    $("#idPartialProjeto").html(data);
+            $("#idPesquisaProj").addClass('hide');
+            $("#idEditarProj").addClass('hide');
+            $("#idCadastrarProj").removeClass('hide');
+
+            $("#btnVoltarProj").removeClass('hide');
+            $("#btnSalvarProj").removeClass('hide');
+
+            $("#idPartialProjeto").html('');
+        });
+
+        $("#btnEditarProj").click(function () {
+            var paramEdit = {
+                IdProjeto: $('#IdProjeto').val(),
+                Descricao: $('#Descricao').val(),
+                Data_Inicio: $('#Data_Inicio').val(),
+                Data_Fim: $('#Data_Fim').val()
+            }
+            debugger
+            $.ajax({
+                url: "../Projeto/EditarProjeto",
+                type: "POST",
+                data: { paramEdit: paramEdit },
+                success: function (dados) {
+                    alert(dados)
+                    window.location.href = "../Projeto/index";
                 }
             });
+        });
+
+        $("#btnVoltarProj").click(function () {
+            window.location.href = "../Projeto/index";
+        });
+
+        $("#btnSalvarProj").click(function () {
+            var paramInsert = {
+                Descricao: $('#Descricao').val(),
+                Data_Inicio: $('#Data_Inicio').val(),
+                Data_Fim: $('#Data_Fim').val()
+            }
+
+            if (paramInsert.Descricao == "") {
+                alert("Preencher o campo Descrição do Projeto.")
+            }
+            else {
+
+                $.ajax({
+                    url: "../Projeto/CadastrarProjeto",
+                    type: "POST",
+                    data: { paramInsert: paramInsert },
+                    success: function (dados) {
+                        alert(dados)
+                        window.location.href = "../Projeto/index";
+                    }
+                });
+            }
         });
     </script>
 }

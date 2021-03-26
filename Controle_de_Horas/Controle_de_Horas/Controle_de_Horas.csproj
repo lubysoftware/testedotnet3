@@ -195,7 +195,6 @@
     <Content Include="Views\LancamentoDeHora\Index.cshtml" />
     <Content Include="Views\Desenvolvedor\_PartialResult.cshtml" />
     <Content Include="Views\Projeto\_PartialResultProjeto.cshtml" />
-    <Content Include="Views\Projeto\_PartialFormulárioCadastro.cshtml" />
     <Content Include="Views\LancamentoDeHora\_PartialResult.cshtml" />
   </ItemGroup>
   <ItemGroup>

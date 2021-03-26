@@ -40,11 +40,17 @@ namespace Controle_de_Horas.Controllers
             }
             return JsonResult(mensagem: "Projeto Deletado com Sucesso!");
         }
-        public ActionResult EditarProjeto(Projeto item)
+        public JsonResult Editar(string id)
         {
-            if (item != null)
+            var obj = _cadProjeto.ListarProjeto().FirstOrDefault(k => k.IdProjeto == Convert.ToInt32(id));
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult EditarProjeto(Projeto paramEdit)
+        {
+            if (paramEdit != null)
             {
-                //_cadProjeto.ExcluirProjeto(item);
+                _cadProjeto.Editar(paramEdit);
             }
             return JsonResult(mensagem: "Projeto Editado com Sucesso!");
         }

@@ -12,5 +12,6 @@ namespace Controle_de_Horas.Repository
         void Cadastrar(Projeto paramInsert);
         IReadOnlyList<Projeto> ListarProjeto();
         void ExcluirProjeto(Projeto CodigoId);
+        void Editar(Projeto paramEdit);
     }
 }

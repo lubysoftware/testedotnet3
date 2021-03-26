@@ -54,6 +54,32 @@
 </div>
 
 <script>
+    $(".btnEditarProjeto").click(function () {
+
+        $.ajax({
+            url: "../Projeto/Editar",
+            type: "POST",
+            data: { id: $(this).closest("tr").attr("id") },
+            success: function (dados) {
+
+                $("#IdProjeto").val(dados.IdProjeto);
+                $("#Descricao").val(dados.Descricao);
+                $("#Data_Inicio").val(dados.Data_Inicio);
+                $("#Data_Fim").val(dados.Data_Fim);
+
+                $("#IdProjeto").attr("disabled", "disabled");
+                $("#idPartialProjeto").html('');
+
+                $("#idEditarProj").removeClass('hide');
+                $("#btnEditarProj").removeClass('hide');
+                $("#btnVoltarProj").removeClass('hide');
+                $("#btnCadastrarProj").addClass('hide');
+                $("#btnPesquisarProj").addClass('hide');
+                $("#idPesquisaProj").addClass('hide');
+            }
+        });
+    });
+
     $(".btnDeletarProjeto").click(function () {
         var item = {
             IdProjeto: $(this).closest("tr").attr("Id"),

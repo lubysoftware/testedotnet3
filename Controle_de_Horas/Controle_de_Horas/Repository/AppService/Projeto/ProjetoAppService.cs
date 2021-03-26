@@ -27,5 +27,10 @@ namespace Controle_de_Horas.Repository
         {
             return conexao.Projeto.AsNoTracking().ToList();
         }
+        public void Editar(Projeto paramEdit)
+        {
+            conexao.Entry(paramEdit).State = EntityState.Modified;
+            conexao.SaveChanges();
+        }
     }
 }
