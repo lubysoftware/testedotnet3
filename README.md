@@ -33,4 +33,5 @@ Desenvolver um serviço que seja capaz de gerar um lançamento de horas.
 
 #### Identificação:
 Nome: Lucas Golnich Silva <br/>
-E-mail: Lucas Golnich Silva
+E-mail: lucasgolnich@hotmail.com
+
