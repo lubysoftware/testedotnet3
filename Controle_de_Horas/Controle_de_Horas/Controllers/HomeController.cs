@@ -14,7 +14,7 @@ namespace Controle_de_Horas.Controllers
         public ActionResult Index()
         {
             var lstDev = _cadLançamento.ListarLancamento().OrderBy(k => k.Horas_trabalhadas).ToList();
-            
+
             return View(lstDev);
         }
 

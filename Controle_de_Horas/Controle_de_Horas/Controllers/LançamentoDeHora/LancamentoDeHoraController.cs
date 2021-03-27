@@ -31,6 +31,10 @@ namespace Controle_de_Horas.Controllers.LançamentoDeHora
         }
         public ActionResult LançarHoras(Lancamento_De_Horas paramInsert)
         {
+            if (paramInsert.DataInicio != null || paramInsert.DataFim != null)
+            {
+                paramInsert.Horas_trabalhadas = paramInsert.DataFim - paramInsert.DataInicio;
+            }
             _cadLançamento.Cadastrar(paramInsert);
 
             return JsonResult(mensagem: "Lançamento realizado com Sucesso!");

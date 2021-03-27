@@ -42,7 +42,7 @@
                             <tr id="@dev.Id">
                                 <td>@dev.NomeDev</td>
                                 <td>@string.Format("{0} horas", dev.Horas_trabalhadas)</td>
-                                <td>@string.Format("{0} até {1}", @dev.DataInicio, @dev.DataFim)</td>
+                                <td>@string.Format("{0} até {1}", @dev.DataInicio.ToString("dd/MM/yyyy"), @dev.DataFim.ToString("dd/MM/yyyy"))</td>
                             </tr>
                         }
                     }

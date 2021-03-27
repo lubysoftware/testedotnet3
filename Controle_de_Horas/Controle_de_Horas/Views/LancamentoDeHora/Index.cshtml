@@ -24,15 +24,10 @@
         </div>
 
         <div class="row">
-            <label>Horas Trabalhadas</label>
-            @Html.TextBoxFor(k => k.Horas_trabalhadas, new { @value = DateTime.Now })
-        </div>
-
-        <div class="row">
             <label style=" margin-right: 73px;">Periodo</label>
-            @Html.TextBoxFor(k => k.DataInicio, new { @class = "date-picker", @Value = DateTime.Now.ToShortDateString(), @placeholder = "Inicio" })
+            @Html.TextBoxFor(k => k.DataInicio, new { @Value = DateTime.Now.ToString(), @placeholder = "Inicio" })
             /
-            @Html.TextBoxFor(k => k.DataFim, new { @class = "date-picker", @Value = DateTime.Now.ToShortDateString(), @placeholder = "Fim" })
+            @Html.TextBoxFor(k => k.DataFim, new { @Value = DateTime.Now.ToString(), @placeholder = "Fim" })
         </div>
 
         <br />
@@ -61,6 +56,9 @@
 
             if (paramInsert.NomeDev == "" || paramInsert.IdProjeto == "") {
                 alert("Selecione o Projeto e o Desenvolvedor .");
+            }
+            else if (paramInsert.DataInicio.substring(0, 10) != paramInsert.DataFim.substring(0, 10)) {
+                alert("Este Lançamento é diario.");
             }
             else {
                 $.ajax({
