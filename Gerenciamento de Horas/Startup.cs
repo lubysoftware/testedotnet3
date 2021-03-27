@@ -27,6 +27,7 @@ namespace Gerenciamento_de_Horas
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IRankingRepository, RankingRepository>();
             services.AddControllersWithViews();
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("Context")));
         }

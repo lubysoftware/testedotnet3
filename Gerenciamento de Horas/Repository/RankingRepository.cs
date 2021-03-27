@@ -1,4 +1,5 @@
-﻿using Gerenciamento_de_Horas.Models.LancamentoHora;
+﻿using Gerenciamento_de_Horas.Models.Desenvolvedores;
+using Gerenciamento_de_Horas.Models.LancamentoHora;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace Gerenciamento_de_Horas.Repository
 {
-    public class RankingRepository : Repository<Lancamentos>, IRankingRepository
+    public class RankingRepository : Repository<Desenvolvedor>, IRankingRepository
     {
-        public Context _context;
+        
 
         public RankingRepository(Context context): base(context)
         {
-            
+           
         }
-        public IQueryable<Lancamentos> GetRanking()
+
+        public string GetNameById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Desenvolvedores.Where(x => x.Id == id).Select(x=> x.Nome).FirstOrDefault();
         }
     }
 }

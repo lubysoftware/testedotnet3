@@ -13,10 +13,13 @@ namespace Gerenciamento_de_Horas.Controllers
     public class RankingController : Controller
     {
         private readonly IRepository<Lancamentos> _repository;
-        public RankingController(IRepository<Lancamentos> respository)
+        private readonly IRankingRepository _rankingRepository ;
+
+        public RankingController(IRepository<Lancamentos> respository, IRankingRepository rankingRepository)
         {
             _repository = respository;
-          
+            _rankingRepository = rankingRepository;
+         
         }
         public async Task<IActionResult> IndexAsync()
         {
@@ -37,7 +40,7 @@ namespace Gerenciamento_de_Horas.Controllers
 
             var list = dev.Select(x => new Ranking()
             {
-                Desenvolvedor = x.Key,
+                Desenvolvedor = _rankingRepository.GetNameById(x.Key).ToString(),
                 Horas = x.Value
             }).OrderByDescending(x=> x.Horas).Take(5).ToList();
             return View(list);
