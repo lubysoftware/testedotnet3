@@ -25,9 +25,9 @@
 
         <div class="row">
             <label style=" margin-right: 73px;">Periodo</label>
-            @Html.TextBoxFor(k => k.DataInicio, new { @Value = DateTime.Now.ToString(), @placeholder = "Inicio" })
+            @Html.TextBoxFor(k => k.DataInicio, new { @Value = DateTime.Now.ToString("dd/MM/yyyy 00:00"), @placeholder = "DD/MM/AAAA 00:00" })
             /
-            @Html.TextBoxFor(k => k.DataFim, new { @Value = DateTime.Now.ToString(), @placeholder = "Fim" })
+            @Html.TextBoxFor(k => k.DataFim, new { @Value = DateTime.Now.ToString("dd/MM/yyyy 23:59"), @placeholder = "DD/MM/AAAA 23:59" })
         </div>
 
         <br />
@@ -45,6 +45,7 @@
 
 @section Scripts {
     <script>
+
         $("#btnLancar").click(function () {
             var paramInsert = {
                 DescriProjeto: $('#DescriProjeto').val(),
