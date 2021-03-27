@@ -13,7 +13,20 @@ namespace Controle_de_Horas.Controllers
         LançamentoDeHoraAppService _cadLançamento = new LançamentoDeHoraAppService();
         public ActionResult Index()
         {
-            var lstDev = _cadLançamento.ListarLancamento().OrderBy(k => k.Horas_trabalhadas).ToList();
+            var lstRetorno = _cadLançamento.ListarLancamento().Where(k => 
+                k.DataInicio >= DateTime.Now.AddDays(-7).Date && k.DataFim <= DateTime.Now).Select(k => k.NomeDev).Distinct().ToList();
+
+            var lstDev = new List<Lancamento_De_Horas>();
+            for (var k = 0; k < lstRetorno.Count; k++)
+            {
+                var obj = new Lancamento_De_Horas();
+                obj.NomeDev = lstRetorno[k];
+                //obj.Horas_trabalhadas = "";
+                obj.DataInicio = DateTime.Now.AddDays(-3).Date;
+                obj.DataFim = DateTime.Now;
+                lstDev.Add(obj);
+            }
+            lstDev.Select(k => k.NomeDev).ToList();
 
             return View(lstDev);
         }
