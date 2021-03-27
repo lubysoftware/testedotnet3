@@ -31,6 +31,13 @@ Desenvolver um serviço que seja capaz de gerar um lançamento de horas.
 - Caso encontre algum impedimento no decorrer do desenvolvimento, entregue da maneira que preferir e faça uma explicação sobre o impedimento.
 - Avaliaremos também sua postura, honestidade e a maneira que resolve problemas.
 
+
+
+# Observações da Desenvolvedora:
+- O Script do Sql Server está no diretorio: SCRIPT-SQL_SERVER.
+- Para executar a Aplicação é necessário alterar a tag <connectionStrings> no web.config
+
+
 #### Identificação:
-Nome: Karine Iasmim Oliveira do Nascimento
+Nome: Karine Iasmim Oliveira do Nascimento <br>
 E-mail: karineyasmimsouza@live.com.br
