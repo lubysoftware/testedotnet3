@@ -32,5 +32,5 @@ Desenvolver um serviço que seja capaz de gerar um lançamento de horas.
 - Avaliaremos também sua postura, honestidade e a maneira que resolve problemas.
 
 #### Identificação:
-Nome: <br/>
-E-mail: 
+Nome: Karine Iasmim Oliveira do Nascimento<br/>
+E-mail: karineyasmimsouza@live.com.br
