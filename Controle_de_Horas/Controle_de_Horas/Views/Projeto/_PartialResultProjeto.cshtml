@@ -31,8 +31,8 @@
                         <tr id="@item.IdProjeto">
                             <td>@item.IdProjeto</td>
                             <td>@item.Descricao</td>
-                            <td>@item.Data_Inicio</td>
-                            <td>@item.Data_Fim</td>
+                            <td>@item.Data_Inicio.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Data_Fim.ToString("dd/MM/yyyy")</td>
                             <td>
                                 <button class="btn btn-sm btn-info btnEditarProjeto">
                                     Editar
@@ -70,6 +70,7 @@
                 $("#IdProjeto").attr("disabled", "disabled");
                 $("#idPartialProjeto").html('');
 
+                $("#idPeriodo").removeClass('hide');
                 $("#idEditarProj").removeClass('hide');
                 $("#btnEditarProj").removeClass('hide');
                 $("#btnVoltarProj").removeClass('hide');

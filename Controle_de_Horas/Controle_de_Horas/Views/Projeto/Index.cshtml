@@ -34,11 +34,11 @@
             @Html.TextBoxFor(k => k.Descricao)
         </div>
 
-        <div class="row">
+        <div class="row hide" id="idPeriodo">
             <label style="margin-right: 24px;">Periodo</label>
-            @Html.TextBoxFor(k => k.Data_Inicio, new { @Value = DateTime.Now.ToShortDateString(), @placeholder = "Inicio" })
+            @Html.TextBoxFor(k => k.Data_Inicio, new { @Value = DateTime.Now.ToShortDateString(), @placeholder = "Data Inicio" })
             até
-            @Html.TextBoxFor(k => k.Data_Fim, new { @Value = DateTime.Now.ToShortDateString(), @placeholder = "Fim" })
+            @Html.TextBoxFor(k => k.Data_Fim, new { @Value = DateTime.Now.ToShortDateString(), @placeholder = "Data Fim" })
         </div>
 
         <br />
@@ -87,6 +87,7 @@
             $("#idPesquisaProj").addClass('hide');
             $("#idEditarProj").addClass('hide');
             $("#idCadastrarProj").removeClass('hide');
+            $("#idPeriodo").removeClass('hide');
 
             $("#btnVoltarProj").removeClass('hide');
             $("#btnSalvarProj").removeClass('hide');
@@ -101,7 +102,7 @@
                 Data_Inicio: $('#Data_Inicio').val(),
                 Data_Fim: $('#Data_Fim').val()
             }
-            debugger
+
             $.ajax({
                 url: "../Projeto/EditarProjeto",
                 type: "POST",

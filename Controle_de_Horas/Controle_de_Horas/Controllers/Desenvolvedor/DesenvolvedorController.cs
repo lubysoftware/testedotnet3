@@ -22,6 +22,19 @@ namespace Controle_de_Horas.Controllers.Desenvolvedor
         {
             var lstRetorno = _cadDesenv.ListarDev().ToList();
 
+            if (paramPesquisa.Id > 0)
+            {
+                lstRetorno = lstRetorno.Where(K => K.Id == paramPesquisa.Id).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(paramPesquisa.Nome))
+            {
+                lstRetorno = lstRetorno.Where(K => K.Nome.Contains(paramPesquisa.Nome)).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(paramPesquisa.Cargo))
+            {
+                lstRetorno = lstRetorno.Where(K => K.Cargo.Contains(paramPesquisa.Cargo)).ToList();
+            }
+
             return PartialView("_PartialResult", lstRetorno);
         }
 

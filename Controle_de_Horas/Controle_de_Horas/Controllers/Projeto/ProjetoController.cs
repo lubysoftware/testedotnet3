@@ -21,6 +21,15 @@ namespace Controle_de_Horas.Controllers
         {
             var lstRetorno = _cadProjeto.ListarProjeto().ToList();
 
+            if (paramPesquisa.IdProjeto > 0)
+            {
+                lstRetorno = lstRetorno.Where(k => k.IdProjeto == paramPesquisa.IdProjeto).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(paramPesquisa.Descricao))
+            {
+                lstRetorno = lstRetorno.Where(k => k.Descricao.Contains(paramPesquisa.Descricao)).ToList();
+            }
+
             return PartialView("_PartialResultProjeto", lstRetorno);
         }
         public ActionResult CadastrarProjeto(Projeto paramInsert)
