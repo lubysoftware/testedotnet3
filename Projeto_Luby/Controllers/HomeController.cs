@@ -72,11 +72,13 @@ namespace Projeto_Luby.Controllers
         #region Metodos de Pesquisa
         public ActionResult PesquisaRanking()
         {
-            DateTime semana = DateTime.Now.AddDays(-5);
+            //Pegar data de uma semana
+            DateTime semana = DateTime.Now.AddDays(-7);
             var lstLancamento = lancamentos.ListaLancamentos().Where(l => l.PERIODO >= semana && l.PERIODO <= DateTime.Now).ToList();
             var NomeRepetidos = lstLancamento.Select(l => l.NOME).Distinct().ToList();
-
             var lstRetorno = new List<RANKING>();
+            
+            //Calcular horas total da semana por desenvolvedor
             for (var i = 0; NomeRepetidos.Count > i; i++)
             {
                 var lstPorNome = lstLancamento.Where(l => l.NOME == NomeRepetidos[i]).OrderBy(l => l.PERIODO).ToList();
@@ -85,15 +87,15 @@ namespace Projeto_Luby.Controllers
                 {
                     time = time.Add(lstPorNome[l].HORAS);
                 }
+                //Montando objeto
                 var objeto = new RANKING();
-
-
                 objeto.Nome = NomeRepetidos[i];
                 objeto.Tempo = time;
                 objeto.DataInicio = Convert.ToString(lstPorNome.First().PERIODO).Substring(0, 10);
                 objeto.DataFim = Convert.ToString(lstPorNome.Last().PERIODO).Substring(0, 10);
                 lstRetorno.Add(objeto);
             }
+
             lstRetorno = lstRetorno.OrderByDescending(l => l.Tempo).Take(5).ToList();
 
             return PartialView("_PartialListRanking", lstRetorno);
