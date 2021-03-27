@@ -8,6 +8,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.IO;
+using System.Text;
+using System.Configuration;
 
 namespace Projeto_Luby
 {
@@ -17,12 +20,13 @@ namespace Projeto_Luby
         static Conexao()
         {
             Database.SetInitializer<Conexao>(null);
+           
         }
 
         public Conexao() 
             : base("Conexao")
         {
-           
+            
         }
         //Criando referencias
         public DbSet<DESENVOLVEDORES> desenvolvedores { get; set; }
@@ -45,5 +49,6 @@ namespace Projeto_Luby
               .Ignore(l => l.isSuccess);
 
         }
+
     }
 }
