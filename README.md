@@ -33,10 +33,10 @@ Desenvolver um serviço que seja capaz de gerar um lançamento de horas.
 
 
 ################################# Primeiros passos #########################################
-Para testar o Projeto:
-1º - Após clonar o repositorio, abra a pasta (testedotnet3 -> Scripts_Banco) e executar o arquivo para gerar um banco.
-obs:(também sera gerado dados para realização de testes, fique avontade para cadastrar, alterar ou excluir)
-2º - Abrir o projeto, ir para a pasta Web.Config e alterar a string de conexao com o banco.
+Para testar o Projeto:<br/>
+1º - Após clonar o repositorio, abra a pasta (testedotnet3 -> Scripts_Banco) e executar o arquivo para gerar um banco.<br/>
+obs:(também sera gerado dados para realização de testes, fique avontade para cadastrar, alterar ou excluir)<br/>
+2º - Abrir o projeto, ir para a pasta Web.Config e alterar a string de conexao com o banco.<br/>
 3º - Executar o projeto =D
 
 #### Identificação:

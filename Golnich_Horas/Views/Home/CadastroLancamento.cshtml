@@ -1,0 +1,82 @@
+﻿@model Golnich_Horas.ViewModel.LANCAMENTO_HORAS
+
+@{
+    ViewBag.Title = "Luby";
+}
+
+<div class="alert alert-info">
+    <div align="center">
+        <h2 class="panel-title">  <i>Cadastro de Lançamentos </i></h2>
+    </div>
+</div>
+
+<div class="panel-body">
+    <fieldset>
+        <legend> <strong>Dados do Cadastro </strong></legend>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="">
+                    Nome:
+                </label>
+                @Html.DropDownListFor(l => l.NOME, (IEnumerable<SelectListItem>)ViewBag.DesenvolvedorCAD, "Todos", new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                <label>Data Inicio:</label>
+                <input type="date" name="data" id="data" min="2000-01-01" class="form-control" required />
+                <p><span style="color:#ff0000;"></span></p>
+
+            </div>
+            <div class="col-md-3">
+                <label>Tempo de trabalho:</label>
+                <input type="time" name="data" id="tempo" min="2000-01-01" class="form-control" required />
+                <p><span style="color:#ff0000;"></span></p>
+
+            </div>
+            <br />
+            <div class="col-md-3">
+                <button class="btn  btn-warning" type="submit" id="btnInserir" title="Inserir">
+                    <i class="fa fa-plus" aria-hidden="true"></i>  Inserir
+                </button>
+                <button type="button" id="btnVoltar" class="btn btn-danger" title="Voltar">
+                    <i class="ace-icon fa fa-arrow-left"></i>
+                    Voltar
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+@section Scripts{
+    <script>
+
+        $("#btnInserir").click(function () {
+            var model = {
+                NOME: $("#NOME").val(),
+                PERIODO: $("#data").val(),
+                HORAS: $("#tempo").val()
+            }
+            if (model.NOME == "" || model.DATA_INICIAL == "" || model.HORAS == "") {
+                debugger;
+                alert("Verifique se todos os campos foram preenchidos corretamente!")
+            } else {
+                $.ajax({
+                    url: "../Home/InserirLancamento",
+                    type: "POST",
+                    data: model,
+                    success: function (dados) {
+                        if (dados.isSuccess == true) {
+                            $("#NOME").val("")
+                            $("#data").val("")
+                            $("#tempo").val("")
+                        }
+                        alert(dados.mensagemCallback);
+                    }
+                });
+            }
+        })
+
+        $("#btnVoltar").click(function () {
+            window.location.href = "../Home/Lancamento_Horas";
+        })
+    </script>
+}

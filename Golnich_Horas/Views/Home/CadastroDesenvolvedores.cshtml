@@ -1,0 +1,83 @@
+﻿@model Golnich_Horas.ViewModel.DESENVOLVEDORES
+@{
+    ViewBag.Title = "Cadastro de Desenvolvedores";
+}
+
+<div class="alert alert-info">
+    <div align="center">
+        <h2 class="panel-title"> <i>Cadastro de Desenvolvedores </i></h2>
+    </div>
+</div>
+
+<div class="panel-body">
+    <fieldset>
+        <legend> <strong>Dados para Cadastro </strong></legend>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label class="">
+                    Nome:
+                </label>
+                @Html.TextBoxFor(l => l.NOME, new { @class = "form-control", @placeholder = "Nome do Desenvolvedor" })
+            </div>
+            <div class="col-md-4">
+                <label class="">
+                    Linguagem:
+                </label>
+                @Html.DropDownListFor(l => l.LINGUAGEM, new List<SelectListItem>
+           {
+                new SelectListItem {Text = "Selecione", Value = ""},
+                new SelectListItem {Text = "C#", Value = "CC"},
+                       new SelectListItem {Text = "Java", Value = "JA"},
+                       new SelectListItem {Text = "Php", Value = "PH"},
+                       new SelectListItem {Text = "Python", Value = "PY"},
+                       new SelectListItem {Text = "Cobol", Value = "CO"},
+           }, new { @class = "form-control" })
+            </div>
+            <br />
+
+            <div class="col-md-4">
+                <button class="btn  btn-warning" type="button" id="btnInserir">
+                    <i class="fa fa-plus" aria-hidden="true"></i>  Inserir
+                </button>
+                <button type="button" id="btnVoltar" class="btn btn-danger" title="Voltar">
+                    <i class="ace-icon fa fa-arrow-left"></i>
+                    Voltar
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+@section Scripts{
+    <script>
+        $("#btnInserir").click(function () {
+
+            var model = {
+                NOME: $("#NOME").val(),
+                LINGUAGEM: $("#LINGUAGEM").val()
+            }
+            if (model.NOME == "" || model.LINGUAGEM == "") {
+                alert("Verifique se todos os campos foram preenchidos corretamente!")
+            } else {
+                $.ajax({
+                    url: "../Home/InserirDesenvolvedor",
+                    type: "POST",
+                    data: model,
+                    success: function (dados) {
+                        if (dados.isSuccess == true) {
+                            $("#NOME").val("")
+                            $("#LINGUAGEM").val("")
+                        }
+                        alert(dados.mensagemCallback);
+                            
+                    }
+                });
+            }
+        })
+
+        $("#btnVoltar").click(function () {
+            window.location.href = "../Home/Desenvolvedores";
+        })
+    </script>
+}
