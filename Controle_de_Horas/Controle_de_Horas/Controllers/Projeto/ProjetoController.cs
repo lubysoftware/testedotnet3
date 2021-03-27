@@ -36,6 +36,8 @@ namespace Controle_de_Horas.Controllers
         {
             if (paramInsert.Descricao != null)
             {
+                paramInsert.Data_Inicio = Convert.ToDateTime(paramInsert.dtInicioTela);
+                paramInsert.Data_Fim = Convert.ToDateTime(paramInsert.dtFimTela);
                 _cadProjeto.Cadastrar(paramInsert);
             }
 
@@ -52,13 +54,16 @@ namespace Controle_de_Horas.Controllers
         public JsonResult Editar(string id)
         {
             var obj = _cadProjeto.ListarProjeto().FirstOrDefault(k => k.IdProjeto == Convert.ToInt32(id));
-
+            obj.dtInicioTela = obj.Data_Inicio.ToString().Substring(0, 10);
+            obj.dtFimTela = obj.Data_Fim.ToString().Substring(0, 10);
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
         public ActionResult EditarProjeto(Projeto paramEdit)
         {
             if (paramEdit != null)
             {
+                paramEdit.Data_Inicio = Convert.ToDateTime(paramEdit.dtInicioTela);
+                paramEdit.Data_Fim = Convert.ToDateTime(paramEdit.dtFimTela);
                 _cadProjeto.Editar(paramEdit);
             }
             return JsonResult(mensagem: "Projeto Editado com Sucesso!");

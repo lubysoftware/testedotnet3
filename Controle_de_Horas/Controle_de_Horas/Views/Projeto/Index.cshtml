@@ -36,9 +36,9 @@
 
         <div class="row hide" id="idPeriodo">
             <label style="margin-right: 24px;">Periodo</label>
-            @Html.TextBoxFor(k => k.Data_Inicio, new { @Value = DateTime.Now.ToShortDateString(), @placeholder = "Data Inicio" })
+            @Html.TextBoxFor(k => k.dtInicioTela, new { @Value = DateTime.Now.Date.ToShortDateString(), @placeholder = "Data Inicio" })
             até
-            @Html.TextBoxFor(k => k.Data_Fim, new { @Value = DateTime.Now.ToShortDateString(), @placeholder = "Data Fim" })
+            @Html.TextBoxFor(k => k.dtFimTela, new { @Value = DateTime.Now.Date.ToShortDateString(), @placeholder = "Data Fim" })
         </div>
 
         <br />
@@ -99,8 +99,8 @@
             var paramEdit = {
                 IdProjeto: $('#IdProjeto').val(),
                 Descricao: $('#Descricao').val(),
-                Data_Inicio: $('#Data_Inicio').val(),
-                Data_Fim: $('#Data_Fim').val()
+                dtInicioTela: $('#dtInicioTela').val(),
+                dtFimTela: $('#dtFimTela').val()
             }
 
             $.ajax({
@@ -121,8 +121,8 @@
         $("#btnSalvarProj").click(function () {
             var paramInsert = {
                 Descricao: $('#Descricao').val(),
-                Data_Inicio: $('#Data_Inicio').val(),
-                Data_Fim: $('#Data_Fim').val()
+                dtInicioTela: $('#dtInicioTela').val(),
+                dtFimTela: $('#dtFimTela').val()
             }
 
             if (paramInsert.Descricao == "") {

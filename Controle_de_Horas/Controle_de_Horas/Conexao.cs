@@ -26,6 +26,10 @@ namespace Controle_de_Horas
             modelBuilder.Configurations.Add(new CADASTRO_DESENVOLVEDOR_MAPPING());
             modelBuilder.Configurations.Add(new PROJETO_MAPPING());
             modelBuilder.Configurations.Add(new LançamentoDeHoraMAPPING());
+
+            modelBuilder.Entity<Projeto>().Ignore(k => k.dtInicioTela);
+            modelBuilder.Entity<Projeto>().Ignore(k => k.dtFimTela);
         }
+
     }
 }
