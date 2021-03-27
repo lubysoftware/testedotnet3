@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Y6jM+Oo0plTWuQArshFzTGhoESy4m6Mczk0lEqx61r6l/fh5pzP0tR/P00KwxvblkweTqX8mh3l8PmUkKFkjg==",
+  "dgSpecHash": "VgjWZUH6QW3P2z4OC8sUL6gYhegzhXRZgRQIY0twv+2tp9/tueQ0CNSN9IVySHmeOZP6m2/C3/qhtREXQKf1dQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danil\\source\\repos\\Gerenciamento de Horas\\Gerenciamento de Horas\\Gerenciamento de Horas.csproj",
+  "projectFilePath": "C:\\Users\\danil\\source\\repos\\Gerenciamento de Horas\\testedotnet3\\Gerenciamento de Horas\\Gerenciamento de Horas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

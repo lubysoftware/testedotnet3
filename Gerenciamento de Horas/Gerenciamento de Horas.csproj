@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Folder Include="LancamentoContext\" />
+    <Folder Include="Models\Ranking\" />
   </ItemGroup>
 
   <ItemGroup>

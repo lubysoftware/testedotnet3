@@ -47,5 +47,7 @@ namespace Gerenciamento_de_Horas.Repository
             _context.Set<T>().Remove(entity);
             _context.SaveChanges();
         }
+
+       
     }
 }

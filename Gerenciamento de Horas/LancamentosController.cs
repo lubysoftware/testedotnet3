@@ -58,6 +58,7 @@ namespace Gerenciamento_de_Horas
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create( Lancamentos lancamentos)
         {
+            lancamentos.TotalHoras = lancamentos.DataFim.Subtract(lancamentos.DataInicio).TotalHours;
             if (ModelState.IsValid)
             {
                 try

@@ -13,5 +13,6 @@ namespace Gerenciamento_de_Horas.Models.LancamentoHora
         public int DesenvolvedorId { get; set; }
         public DateTime DataInicio{ get; set; }
         public DateTime DataFim { get; set; }
+        public double TotalHoras { get; set; }
     }
 }
