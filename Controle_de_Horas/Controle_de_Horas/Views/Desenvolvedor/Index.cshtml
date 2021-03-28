@@ -118,15 +118,20 @@
                 Cargo: $('#Cargo').val(),
             }
 
-            $.ajax({
-                url: "../Desenvolvedor/SalvarCadastro",
-                type: "POST",
-                data: { paramInsert: paramInsert },
-                success: function (dados) {
-                    alert(dados)
-                    window.location.href = "../Desenvolvedor/index";
-                }
-            });
+            if (paramInsert.Nome == "" || paramInsert.Cargo == "") {
+                alert("Campos não informado, cadastro não não realizado.");
+            }
+            else {
+                $.ajax({
+                    url: "../Desenvolvedor/SalvarCadastro",
+                    type: "POST",
+                    data: { paramInsert: paramInsert },
+                    success: function (dados) {
+                        alert(dados)
+                        window.location.href = "../Desenvolvedor/index";
+                    }
+                });
+            }            
         });
 
         $("#btnVoltar").click(function () {

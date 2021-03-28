@@ -45,7 +45,7 @@
                                 @{
                                     if (dev.Horas_trabalhadas.Days != 0)
                                     {
-                                        <td>@string.Format("{0}d. {1} horas", dev.Horas_trabalhadas.Days, string.Format("{0}:{1}", dev.Horas_trabalhadas.Hours, dev.Horas_trabalhadas.Minutes))</td>
+                                        <td>@string.Format("{0}d. {1} horas", dev.Horas_trabalhadas.Days, string.Format("{0}:{1}", dev.Horas_trabalhadas.Hours.ToString("00"), dev.Horas_trabalhadas.Minutes))</td>
                                     }
                                     else
                                     {
