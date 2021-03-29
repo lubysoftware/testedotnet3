@@ -1,0 +1,66 @@
+﻿@using Controle_de_Horas.Models
+
+@{
+    var lstDesenvolvedores = Model as List<Lancamento_De_Horas>;
+}
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <br />
+    <div class="row center-block">
+        <!-- HEADER -->
+        <div class="widget-header">
+            <h3 class="widget-title lighter smaller">
+                <i class="ace-icon fa fa-star orange"></i>
+                Ranking dos Desenvolvedores
+            </h3>
+        </div>
+
+        <!--TABELA-->
+        <table class="table table-bordered table-striped">
+
+            <!--COLUNAS-->
+            <thead class="thin-border-bottom">
+                <tr>
+                    <th class="text-center"><i class="ace-icon fa fa-caret-right blue"></i>Desenvolvedor</th>
+                    <th class="text-center"><i class="ace-icon fa fa-caret-right blue"></i>Horas Trabalhadas</th>
+                    <th class="text-center"><i class="ace-icon fa fa-caret-right blue"></i>Periodo</th>
+                </tr>
+            </thead>
+
+            <!--LINHAS-->
+            <tbody>
+
+                @{
+                    if (lstDesenvolvedores != null)
+                    {
+                        foreach (var dev in lstDesenvolvedores)
+                        {
+                            <tr id="@dev.Id">
+                                <td>@dev.NomeDev</td>
+
+                                @{
+                                    if (dev.Horas_trabalhadas.Days != 0)
+                                    {
+                                        <td>@string.Format("{0}d. {1} horas", dev.Horas_trabalhadas.Days, string.Format("{0}:{1}", dev.Horas_trabalhadas.Hours.ToString("00"), dev.Horas_trabalhadas.Minutes))</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@string.Format("{0} horas", dev.Horas_trabalhadas)</td>
+                                    }
+                                }
+                                <td>@string.Format("{0} até {1}", @dev.DataInicio.ToString("dd/MM/yyyy"), @dev.DataFim.ToString("dd/MM/yyyy"))</td>
+                            </tr>
+                        }
+                    }
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

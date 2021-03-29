@@ -1,0 +1,145 @@
+﻿@model Controle_de_Horas.Models.Projeto
+@{
+    ViewBag.Title = "Projeto";
+}
+
+<div class="navbar" id="idPesquisa">
+    <div class="row" id="idPesquisaProj">
+        <h3>
+            Central de Projeto - Pesquisa
+        </h3>
+    </div>
+
+    <div class="row hide" id="idCadastrarProj">
+        <h3>
+            Central de Projeto - Cadastrar
+        </h3>
+    </div>
+
+    <div class="row hide" id="idEditarProj">
+        <h3>
+            Central de Projeto - Editar
+        </h3>
+    </div>
+
+    <hr />
+    <div class="col-md-7">
+        <div class="row" id="idCodProj">
+            <label style="margin-right: 28px;">Código</label>
+            @Html.TextBoxFor(k => k.IdProjeto)
+        </div>
+
+        <div class="row">
+            <label style="margin-right: 9px;">Descrição</label>
+            @Html.TextBoxFor(k => k.Descricao)
+        </div>
+
+        <div class="row hide" id="idPeriodo">
+            <label style="margin-right: 24px;">Periodo</label>
+            @Html.TextBoxFor(k => k.dtInicioTela, new { @Value = DateTime.Now.Date.ToShortDateString(), @placeholder = "Data Inicio" })
+            até
+            @Html.TextBoxFor(k => k.dtFimTela, new { @Value = DateTime.Now.Date.ToShortDateString(), @placeholder = "Data Fim" })
+        </div>
+
+        <br />
+        <div class="col-md-4" style="margin-left: 22%;">
+            <button class="btn btn-primary" id="btnPesquisarProj">Pesquisar</button>
+            <button class="btn btn-warning" id="btnCadastrarProj">Cadastrar</button>
+            <button class="btn btn-default hide" id="btnVoltarProj">Voltar</button>
+            <button class="btn btn-success hide" id="btnEditarProj">Editar</button>
+            <button class="btn btn-success hide" id="btnSalvarProj">Salvar</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="idPartialProjeto">
+
+</div>
+
+@section Scripts {
+    <script>
+        $("#btnPesquisarProj").click(function () {
+            var paramPesquisa = {
+                IdProjeto: $('#IdProjeto').val(),
+                Descricao: $('#Descricao').val(),
+                Data_Inicio: $('#Data_Inicio').val(),
+                Data_Fim: $('#Data_Fim').val()
+            }
+
+            $.ajax({
+                url: "../Projeto/ListarProjetos",
+                type: "POST",
+                data: { paramPesquisa: paramPesquisa },
+                success: function (data) {
+                    $("#idPartialProjeto").html(data);
+                }
+            });
+        });
+
+        $("#btnCadastrarProj").click(function () {
+            $("#btnCadastrarProj").addClass('hide');
+            $("#btnPesquisarProj").addClass('hide');
+            $("#btnEditarProj").addClass('hide');
+            $("#IdProjeto").addClass('hide');
+            $("#idCodProj").addClass('hide');
+
+            $("#idPesquisaProj").addClass('hide');
+            $("#idEditarProj").addClass('hide');
+            $("#idCadastrarProj").removeClass('hide');
+            $("#idPeriodo").removeClass('hide');
+
+            $("#btnVoltarProj").removeClass('hide');
+            $("#btnSalvarProj").removeClass('hide');
+
+            $("#idPartialProjeto").html('');
+        });
+
+        $("#btnEditarProj").click(function () {
+            var paramEdit = {
+                IdProjeto: $('#IdProjeto').val(),
+                Descricao: $('#Descricao').val(),
+                dtInicioTela: $('#dtInicioTela').val(),
+                dtFimTela: $('#dtFimTela').val()
+            }
+
+            $.ajax({
+                url: "../Projeto/EditarProjeto",
+                type: "POST",
+                data: { paramEdit: paramEdit },
+                success: function (dados) {
+                    alert(dados)
+                    window.location.href = "../Projeto/index";
+                }
+            });
+        });
+
+        $("#btnVoltarProj").click(function () {
+            window.location.href = "../Projeto/index";
+        });
+
+        $("#btnSalvarProj").click(function () {
+            var paramInsert = {
+                Descricao: $('#Descricao').val(),
+                dtInicioTela: $('#dtInicioTela').val(),
+                dtFimTela: $('#dtFimTela').val()
+            }
+
+            if (paramInsert.Descricao == "") {
+                alert("Preencher o campo Descrição do Projeto.")
+            }
+            else {
+
+                $.ajax({
+                    url: "../Projeto/CadastrarProjeto",
+                    type: "POST",
+                    data: { paramInsert: paramInsert },
+                    success: function (dados) {
+                        alert(dados)
+                        window.location.href = "../Projeto/index";
+                    }
+                });
+            }
+        });
+    </script>
+}

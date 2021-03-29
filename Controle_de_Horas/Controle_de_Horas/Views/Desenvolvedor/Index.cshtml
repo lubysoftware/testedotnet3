@@ -1,0 +1,141 @@
+﻿@model  Controle_de_Horas.Models.Cadastro_Desenvolvedor
+
+@{
+    ViewBag.Title = "Desenvolvedor";
+}
+
+<div class="navbar" id="idPesquisaDev">
+
+    <div class="row" id="idPesquisa">
+        <h3>
+            Central de Desenvolvedor - Pesquisa
+        </h3>
+    </div>
+
+    <div class="row hide" id="idCadastrar">
+        <h3>
+            Central de Desenvolvedor - Cadastrar
+        </h3>
+    </div>
+
+    <div class="row hide" id="idEditar">
+        <h3>
+            Central de Desenvolvedor - Editar
+        </h3>
+    </div>
+
+    <hr />
+    <div class="col-md-7">
+        <div class="row" id="idcod">
+            <label>Código</label>
+            @Html.TextBoxFor(k => k.Id)
+        </div>
+
+        <div class="row">
+            <label style="margin-right: 9px;">Nome</label>
+            @Html.TextBoxFor(k => k.Nome)
+        </div>
+
+        <div class="row">
+            <label style="margin-right: 8px;">Cargo</label>
+            @Html.TextBoxFor(k => k.Cargo)
+        </div>
+
+        <br />
+        <div class="col-md-4" style=" margin-left: 21px;">
+            <button class="btn btn-primary" id="btnPesquisar">Pesquisar</button>
+            <button class="btn btn-warning" id="btnCadastrar">Cadastrar</button>
+            <button class="btn btn-default hide" id="btnVoltar">Voltar</button>
+            <button class="btn btn-success hide" id="btnEditar">Editar</button>
+            <button class="btn btn-success hide" id="btnSalvar">Salvar</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="idPartialDev">
+
+</div>
+
+@section Scripts {
+    <script>
+        $("#btnPesquisar").click(function () {
+            var paramPesquisa = {
+                Id: $('#Id').val(),
+                Nome: $('#Nome').val(),
+                Cargo: $('#Cargo').val(),
+            }
+
+            $.ajax({
+                url: "../Desenvolvedor/Listar",
+                type: "POST",
+                data: { paramPesquisa: paramPesquisa },
+                success: function (data) {
+                    $("#idPartialDev").html(data);
+
+                }
+            });
+        });
+
+        $("#btnCadastrar").click(function () {
+            $("#btnCadastrar").addClass('hide');
+            $("#btnPesquisar").addClass('hide');
+            $("#btnEditar").addClass('hide');
+            $("#idcod").addClass('hide');
+
+            $("#idPesquisa").addClass('hide');
+            $("#idEditar").addClass('hide');
+            $("#idCadastrar").removeClass('hide');
+
+            $("#btnVoltar").removeClass('hide');
+            $("#btnSalvar").removeClass('hide');
+
+            $("#idPartialDev").html('');
+        });
+
+        $("#btnEditar").click(function () {
+            var paramEdit = {
+                Id: $('#Id').val(),
+                Nome: $('#Nome').val(),
+                Cargo: $('#Cargo').val(),
+            }
+
+            $.ajax({
+                url: "../Desenvolvedor/EditarItem",
+                type: "POST",
+                data: { paramEdit: paramEdit },
+                success: function (dados) {
+                    alert(dados)
+                    window.location.href = "../Desenvolvedor/index";
+                }
+            });
+        });
+
+        $("#btnSalvar").click(function () {
+            var paramInsert = {
+                Id: $('#Id').val(),
+                Nome: $('#Nome').val(),
+                Cargo: $('#Cargo').val(),
+            }
+
+            if (paramInsert.Nome == "" || paramInsert.Cargo == "") {
+                alert("Campos não informado, cadastro não não realizado.");
+            }
+            else {
+                $.ajax({
+                    url: "../Desenvolvedor/SalvarCadastro",
+                    type: "POST",
+                    data: { paramInsert: paramInsert },
+                    success: function (dados) {
+                        alert(dados)
+                        window.location.href = "../Desenvolvedor/index";
+                    }
+                });
+            }            
+        });
+
+        $("#btnVoltar").click(function () {
+            window.location.href = "../Desenvolvedor/index";
+        });
+    </script>
+}

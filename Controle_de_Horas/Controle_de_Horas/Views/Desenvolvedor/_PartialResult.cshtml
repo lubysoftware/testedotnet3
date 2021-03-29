@@ -1,0 +1,94 @@
+﻿@using Controle_de_Horas.Models
+
+@{
+    var lstRetorno = Model as List<Cadastro_Desenvolvedor>;
+}
+
+<div>
+
+    <!--TABELA-->
+    <table class="table table-bordered table-striped">
+
+        <!--COLUNAS-->
+        <thead>
+            <tr>
+                <th class="text-center">Código</th>
+                <th class="text-center">Nome</th>
+                <th class="text-center">Cargo</th>
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+
+        <!--LINHAS-->
+        <tbody>
+
+            @{
+                if (lstRetorno != null)
+                {
+                    foreach (var item in lstRetorno)
+                    {
+                        <tr id="@item.Id">
+                            <td>@item.Id</td>
+                            <td>@item.Nome</td>
+                            <td>@item.Cargo</td>
+                            <td>
+                                <button class="btn btn-sm btn-info btnEditar">
+                                    Editar
+                                </button>
+
+                                <button class="btn btn-sm btn-danger btnDeletar">
+                                    Deletar
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+    $(".btnEditar").click(function () {
+
+        $.ajax({
+            url: "../Desenvolvedor/Editar",
+            type: "POST",
+            data: { Id: $(this).closest("tr").attr("Id") },
+            success: function (dados) {
+                $("#Id").val(dados.Id);
+                $("#Nome").val(dados.Nome);
+                $("#Cargo").val(dados.Cargo);
+
+                $("#Id").attr("disabled","disabled");
+                $("#idPartialDev").html('');
+                
+                $("#btnEditar").removeClass('hide');
+                $("#idEditar").removeClass('hide');
+                $("#btnVoltar").removeClass('hide');
+                $("#btnCadastrar").addClass('hide');
+                $("#btnPesquisar").addClass('hide');
+                $("#idPesquisa").addClass('hide');
+            }
+        });
+    });
+
+    $(".btnDeletar").click(function () {
+        var item = {
+            Id: $(this).closest("tr").attr("Id"),
+        }
+
+        $.ajax({
+            url: "../Desenvolvedor/DeletarItem",
+            type: "POST",
+            data: { item: item },
+            success: function (dados) {
+                alert(dados)
+                window.location.href = "../Desenvolvedor/Index";
+            }
+        });
+    });
+</script>
