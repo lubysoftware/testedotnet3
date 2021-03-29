@@ -31,6 +31,15 @@ Desenvolver um serviço que seja capaz de gerar um lançamento de horas.
 - Caso encontre algum impedimento no decorrer do desenvolvimento, entregue da maneira que preferir e faça uma explicação sobre o impedimento.
 - Avaliaremos também sua postura, honestidade e a maneira que resolve problemas.
 
+
+################################# Primeiros passos #########################################
+Para testar o Projeto:<br/>
+1º - Após clonar o repositorio, abra a pasta (testedotnet3 -> Scripts_Banco) e executar o arquivo para gerar um banco.<br/>
+obs:(também sera gerado dados para realização de testes, fique avontade para cadastrar, alterar ou excluir)<br/>
+2º - Abrir o projeto, ir para a pasta Web.Config e alterar a string de conexao com o banco.<br/>
+3º - Executar o projeto =D
+
 #### Identificação:
-Nome: <br/>
-E-mail: 
+Nome: Lucas Golnich Silva <br/>
+E-mail: lucasgolnich@hotmail.com
+

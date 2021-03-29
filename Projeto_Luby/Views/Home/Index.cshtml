@@ -1,0 +1,27 @@
+﻿<div class="alert alert-info">
+    <div align="center">
+        <h1 class="panel-title">  <i>Ranking da semana </i></h1>
+    </div>
+</div>
+
+<div id="divResult">
+
+</div>
+
+@section Scripts{
+    <script>
+        getList();
+        function getList() {
+            debugger;
+            $.ajax({
+                url: "../Home/PesquisaRanking",
+                type: "POST",
+          
+                success: function (dados) {
+                    $("#divResult").html(dados)
+                }
+            });
+        }
+
+    </script>
+}
