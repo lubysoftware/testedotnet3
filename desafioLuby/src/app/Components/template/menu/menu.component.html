@@ -1,0 +1,21 @@
+<mat-sidenav-container class="container">
+    <mat-sidenav class="sidenav" mode="side" opened fixedInViewport="true" fixedTopGap="64">
+        <mat-nav-list class="nav-list">
+            <a mat-list-item routerLink="/">
+                <i class="material-icons">trending_up</i>Ranque
+            </a>
+            <a mat-list-item routerLink="/lancamentos">
+                <i class="material-icons">watch_later</i>Lançamentos
+            </a>
+            <a mat-list-item routerLink="/projetos">
+                <i class="material-icons">emoji_objects</i>Projetos
+            </a>
+            <a mat-list-item routerLink="/desenvolvedores">
+                <i class="material-icons">person</i>Desenvolvedores
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

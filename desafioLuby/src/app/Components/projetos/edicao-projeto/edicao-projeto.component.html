@@ -1,0 +1,29 @@
+<mat-card-title style="text-align: center;">Edição Projeto</mat-card-title>
+<mat-card>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Nome" formControlName="nome" name="nome">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Descricao</mat-label>
+      <textarea matInput formControlName="descricao" name="descricao"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Escolha um desenvolvedor</mat-label>
+      <mat-select [(value)]="desenvolvedor.nome" (selectionChange)="selectionChange(desenvolvedor)">
+        <mat-option *ngFor="let desenvolvedor of desenvolvedores" value="{{ desenvolvedor.nome }}">
+          {{desenvolvedor.nome}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+
+  <button mat-raised-button (click)="close()">
+    Cancelar
+  </button>
+  <button [disabled]="form.invalid" mat-raised-button type="button" color="primary" (click)="atualizar()">
+    Salvar
+  </button>
+</mat-card>

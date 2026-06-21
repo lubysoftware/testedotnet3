@@ -1,0 +1,54 @@
+<mat-card-title style="text-align: center;">Novo Lançamento</mat-card-title>
+<mat-card>
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Escolha um projeto</mat-label>
+      <mat-select formControlName="projeto" [(value)]="projeto" name="projeto">
+        <mat-option *ngFor="let projeto of projetos" value="{{ projeto.nome }}">
+          {{projeto.nome}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Escolha um desenvolvedor</mat-label>
+      <mat-select formControlName="desenvolvedor" [(value)]="desenvolvedor" name="desenvolvedor">
+        <mat-option *ngFor="let desenvolvedor of desenvolvedores" value="{{ desenvolvedor.nome }}">
+          {{desenvolvedor.nome}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <mat-form-field>
+          <input type="date" (change)="getDataInicio()" matInput placeholder="Data início" formControlName="dataInicio"
+            name="dataInicio">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input type="time" matInput placeholder="Hora início" formControlName="horaInicio" name="horaInicio">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <mat-form-field>
+          <input type="date" min="{{dataInicio}}" matInput placeholder="Data Fim" formControlName="dataFim"
+            name="dataFim">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input type="time" matInput placeholder="Hora Fim" formControlName="horaFim" name="horaFim">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+
+  <button mat-raised-button (click)="close()">
+    Cancelar
+  </button>
+  <button [disabled]="form.invalid" mat-raised-button type="button" color="primary" (click)="salvar()">
+    Salvar
+  </button>
+</mat-card>

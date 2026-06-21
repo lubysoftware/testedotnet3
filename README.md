@@ -32,5 +32,8 @@ Desenvolver um serviço que seja capaz de gerar um lançamento de horas.
 - Avaliaremos também sua postura, honestidade e a maneira que resolve problemas.
 
 #### Identificação:
-Nome: <br/>
-E-mail: 
+Nome: Marcos Lima de Fátima. <br/> 
+E-mail: marcoslimadefatima@gmail.com
+
+#### Instruções API:
+para executar a API, execute o comando `npm run api` dentro do repósitorio \desafioLuby.
