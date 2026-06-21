@@ -1,0 +1,58 @@
+﻿@using Golnich_Horas.ViewModel
+
+@{
+    var lstRanking = Model as List<RANKING>;
+}
+
+<hr />
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Tempo Total</th>
+            <th>Data Inicio</th>
+            <th>Data Fim</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            if (lstRanking != null)
+            {
+                if (lstRanking.Count > 0)
+                {
+                    foreach (var entidade in lstRanking)
+                    {
+                        var ds_time = Convert.ToString(@entidade.Tempo);
+                        if (ds_time.Length > 8)
+                        {
+                            var sep = ds_time.Split('.');
+                            entidade.Ds_Tempo = string.Format(@"{0} Dia(s) - {1} Horas", sep[0], sep[1]);
+                        }
+                        else
+                        {
+                            entidade.Ds_Tempo = Convert.ToString(entidade.Tempo);
+                        }
+                        <tr>
+                            <td>@entidade.Nome</td>
+                            <td>@entidade.Ds_Tempo</td>                                      
+                            <td>@entidade.DataInicio</td>
+                            <td>@entidade.DataFim</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">Nenhum Registro Encontrado</td>
+
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+
+</table>
+
